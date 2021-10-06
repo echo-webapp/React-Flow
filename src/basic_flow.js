@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactFlow from "react-flow-renderer";
 import * as S from "./styles";
 import { Paper } from "@material-ui/core";
 import MessageIcon from "@material-ui/icons/Message";
+import { ItemTypes } from "./ItemTypes";
+import { useDrag, useDrop, useDragLayer } from "react-dnd";
 
 const MessageElement = (
   <S.Container>
@@ -21,50 +23,89 @@ const MessageElement = (
 );
 
 const elements = [
-  {
-    id: "1",
-    data: {
-      label: MessageElement,
-    },
-    position: { x: 250, y: 5 },
-  },
-  { id: "2", data: { label: "Node 2" }, position: { x: 100, y: 100 } },
-  { id: "3", data: { label: "Node 3" }, position: { x: 200, y: 200 } },
-  { id: "e1-2", source: "1", target: "2", animated: false },
-  { id: "e1-2", source: "2", target: "3", animated: false },
+  // {
+  //   id: 1,
+  //   data: {
+  //     label: MessageElement,
+  //   },
+  //   // style: { background: "#ffcc50", width: 100 },
+  //   position: { x: 250, y: 5 },
+  // },
 ];
-const elements1 = [
-  {
-    id: "1",
-    style: { background: "#ffcc50", width: 100 },
-    data: { label: "custom style" },
-    position: { x: 100, y: 5 },
-  },
-];
-
-const flowStyles = { height: "50vh", backgroundColor: "#eee" };
 
 const BasicFlow = () => {
   const [node_elements, setnode_elements] = useState(elements);
-  const [data, setdata] = useState("somedata");
+  const [number, setnumber] = useState(0);
+  const { currentOffset } = useDragLayer((monitor) => ({
+    item: monitor.getItem(),
+    itemType: monitor.getItemType(),
+    initialOffset: monitor.getInitialSourceClientOffset(),
+    currentOffset: monitor.getSourceClientOffset(),
+    isDragging: monitor.isDragging(),
+  }));
 
-  const addElement = () => {
+  const [collect, drag, dragPreview] = useDrag(() => ({
+    type: ItemTypes.message_card,
+    item: {
+      coordinates: currentOffset,
+    },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
+  const [{ isOver }, drop] = useDrop(
+    () => ({
+      accept: ItemTypes.message_card,
+      drop: (item, monitor) => {
+        addElement(currentOffset);
+        return null;
+      },
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+      }),
+    }),
+    [currentOffset]
+  );
+
+  const flowStyles = {
+    height: "50vh",
+    backgroundColor: isOver ? "#aaa" : "#eee",
+  };
+
+  const addElement = (offset) => {
     const new_element = {
-      id: "4",
+      id: (Math.random() * 1000).toFixed(0),
       data: {
         label: MessageElement,
       },
-      position: { x: 500, y: 100 },
+      position: { x: offset.x - 100, y: offset.y - 100 },
     };
     setnode_elements((prev) => [...prev, new_element]);
+    setnumber((prev) => prev + 1);
   };
+
   return (
     <S.MainContainer>
       <S.LeftSection>
-        <div onClick={addElement}></div>
+        {!collect.isDragging ? (
+          <S.MessageSec id="sec" ref={drag} onClick={addElement}>
+            <MessageIcon />
+          </S.MessageSec>
+        ) : (
+          <S.MessageSec ref={dragPreview} onClick={addElement}>
+            <MessageIcon />
+          </S.MessageSec>
+        )}
+
         <div className="round"></div>
       </S.LeftSection>
-      <ReactFlow elements={node_elements} style={flowStyles} />
+      <ReactFlow
+        nodesConnectable={true}
+        ref={drop}
+        elements={node_elements}
+        style={flowStyles}
+      />
     </S.MainContainer>
   );
 };

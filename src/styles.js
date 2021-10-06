@@ -7,6 +7,12 @@ export const MainContainer = styled.div`
   gap: 10px;
 `;
 
+export const Container = styled.div`
+  display: flex;
+  height: 100px;
+  flex-direction: column;
+`;
+
 export const LeftSection = styled.div`
   display: flex;
   justify-content: center;
@@ -15,21 +21,6 @@ export const LeftSection = styled.div`
   &:hover {
     cursor: pointer;
   }
-  div {
-    width: 30px;
-    height: 30px;
-    background-color: #ddd;
-    padding: 5px;
-  }
-  .round {
-    border-radius: 50%;
-  }
-`;
-
-export const Container = styled.div`
-  display: flex;
-  height: 100px;
-  flex-direction: column;
 `;
 
 export const TitleDiv = styled.div`
@@ -62,5 +53,21 @@ export const Messages = styled.div`
     input {
       width: 100%;
     }
+  }
+`;
+
+export const MessageSec = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  svg {
+    vertical-align: middle;
+    font-size: 40px;
   }
 `;
