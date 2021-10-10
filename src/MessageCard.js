@@ -14,20 +14,31 @@ import DeleteIcons from "./Assets/DeleteIcon";
 import DuplicateIcons from "./Assets/DuplicateIcon";
 import RenameIcons from "./Assets/RenameIcon";
 import MessageOption from "./MessageOption";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  menu: {
+    display: "flex",
+  },
+});
+
 const MessageCard = () => {
   const [state, setState] = useState({
     picCount: 0,
     pics: undefined,
   });
+  const classes = useStyles();
   const [optionsList, setoptionsList] = useState([]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const addOptionHandler = () => {
     setoptionsList((prevState) => {
       let prevList = [...prevState];
@@ -64,6 +75,7 @@ const MessageCard = () => {
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
+            className={classes.menu}
             anchorOrigin={{
               vertical: "top",
               horizontal: "left",
@@ -77,25 +89,25 @@ const MessageCard = () => {
               <ListItemIcon>
                 <DeleteIcons height="20px" width="20px" />
               </ListItemIcon>
-              Delete
+              <div>Delete</div>
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <ListItemIcon>
                 <DuplicateIcons height="20px" width="20px" />
               </ListItemIcon>
-              Duplicate
+              <div>Duplicate</div>
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <ListItemIcon>
                 <CopyLink height="20px" width="20px" />
               </ListItemIcon>
-              CopyLink
+              <div>CopyLink</div>
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <ListItemIcon>
                 <RenameIcons height="20px" width="20px" />
               </ListItemIcon>
-              Rename
+              <div>Rename</div>
             </MenuItem>
           </Menu>
         </div>
