@@ -1,11 +1,12 @@
 .MessageCardHeader {
-  width: 211px;
+  width: 259px;
   height: 48px;
   background: #ebebeb;
   border-radius: 10px 10px 0px 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid #8f8c8c;
 }
 .MessageCardHeaderLeft {
   display: flex;
@@ -18,8 +19,9 @@
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
-  font-size: 1.5em;
+  font-size: 1em;
   line-height: 15px;
+  margin-top: 4px;
   /* identical to box height */
 
   color: #414141;
@@ -32,18 +34,103 @@
 }
 .MessageCardInputBody {
   width: 211px;
-  min-height: 100px;
+  min-height: 92px;
   background: #ebebeb;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  padding: 24px 28px 20px 20px;
 }
-.MessageCardInputBody textarea {
+.MessageCardInputBodyTextArea {
+  width: 100%;
   border: none;
   background-color: transparent;
   resize: none;
   outline: none;
   height: min-content;
   overflow: hidden;
+  margin-bottom: 14px;
+  line-height: 18px;
+}
+.AddOptionButton {
+  width: 259px;
+  height: 44px;
+  background: #414141;
+  border-radius: 0px 0px 10px 10px;
+  cursor: pointer;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 15px;
+  /* identical to box height */
+  color: #ffffff;
+}
+.AddImageIcon {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  cursor: pointer;
+}
+.message-uploaded-pic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 259px !important;
+  height: 150px !important;
+  background: #ebebeb;
+  border-bottom: 1px solid #8f8c8c;
+  /* padding: 24px 28px 20px 20px; */
+  cursor: pointer;
+}
+.upload-pic-remove-btn {
+  background-color: rgba(0, 0, 0, 0.77) !important;
+  padding: 4px !important;
+  margin: 2px !important;
+}
+.OptionMenulist {
+  box-sizing: border-box;
+  width: 259px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #c4c4c4;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 12px;
+  padding-left: 20px;
+  /* identical to box height */
+  color: #000000;
+}
+.MessageCardOptionInputBody {
+  box-sizing: border-box;
+  width: 259px;
+  min-height: 28px;
+  background: #c4c4c4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 28px 8px 20px;
+  border-bottom: 1px solid #8f8c8c;
+}
+.MessageCardOptionInputBodyTextArea {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  height: min-content;
+  overflow: hidden;
+  line-height: 18px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: #000000;
 }
