@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import "./MessageCard.css";
-import MessageIcon from "./Assets/MessageIcon";
-import AddImageIcon from "./Assets/AddImageIcon";
+import MessageIcon from "../../Assets/message_card/MessageIcon";
+import AddImageIcon from "../../Assets/message_card/AddImageIcon";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { makeStyles } from "@material-ui/core";
 import TextareaAutosize from "react-textarea-autosize";
 import ShowImage from "./ShowImage";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import CopyLink from "./Assets/CopyLinkIcon";
-import DeleteIcons from "./Assets/DeleteIcon";
-import DuplicateIcons from "./Assets/DuplicateIcon";
-import RenameIcons from "./Assets/RenameIcon";
+import CopyLink from "../../Assets/message_card/CopyLinkIcon";
+import DeleteIcons from "../../Assets/message_card/DeleteIcon";
+import DuplicateIcons from "../../Assets/message_card/DuplicateIcon";
+import RenameIcons from "../../Assets/message_card/RenameIcon";
 import MessageOption from "./MessageOption";
-import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   menu: {
@@ -150,8 +150,8 @@ const MessageCard = () => {
           </div>
         )}
       </div>
-      {optionsList.map((Option) => (
-        <MessageOption />
+      {optionsList.map((Option, key) => (
+        <MessageOption key={key} />
       ))}
       <button className="AddOptionButton" onClick={addOptionHandler}>
         + Add options

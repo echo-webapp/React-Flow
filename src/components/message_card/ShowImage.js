@@ -7,6 +7,7 @@ const ShowImage = (props) => {
         ? props.state.pics.map((pic, index) => {
             return (
               <div
+                key={index * 100}
                 style={{
                   backgroundImage: `url("${URL.createObjectURL(pic)}")`,
                   backgroundRepeat: "no-repeat",

@@ -1,15 +1,13 @@
 import React, { Fragment } from "react";
 import { Route } from "react-router";
-import DragandDrop from "./drag_and_drop";
-import Sidebar from "./components/sidebar/sidebar";
-import Home from "./home.js";
+import MessageCard from "./components/message_card/MessageCard";
+import Home from "./components/home/home.js";
 
 const Router = () => {
   return (
     <Fragment>
-      <Route exact path="/" component={DragandDrop} />
+      <Route exact path="/" component={MessageCard} />
       <Route exact path="/home" component={Home} />
-      <Route exact path="/sidebar" component={Sidebar} />
     </Fragment>
   );
 };

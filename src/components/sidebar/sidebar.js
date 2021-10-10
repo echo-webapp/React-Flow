@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ItemTypes } from "../../ItemTypes";
+import { ItemTypes } from "./ItemTypes";
 import * as S from "./styles";
 import {
   handtool,
@@ -7,11 +7,9 @@ import {
   message_icon,
   movetool,
 } from "../../Assets/sidebar/all_icons";
-import { useDrag, useDrop, useDragLayer } from "react-dnd";
-import MessageCard from "../../MessageCard";
+import { useDrag, useDragLayer } from "react-dnd";
 
 const Sidebar = () => {
-
   const { currentOffset } = useDragLayer((monitor) => ({
     item: monitor.getItem(),
     itemType: monitor.getItemType(),
@@ -29,7 +27,6 @@ const Sidebar = () => {
       isDragging: monitor.isDragging(),
     }),
   }));
-
 
   return (
     <S.MainContainer>

@@ -1,5 +1,17 @@
 import { createTheme } from "@material-ui/core";
+import { createGlobalStyle } from "styled-components";
 
+export const GlobalStyle = createGlobalStyle`
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+svg {
+  vertical-align: middle;
+}
+`;
 export const Theme = createTheme({
   color: {
     black: "black",
@@ -9,4 +21,3 @@ export const Theme = createTheme({
     border: "#909090",
   },
 });
-
