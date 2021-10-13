@@ -9,14 +9,16 @@ import { useDrop, useDragLayer } from "react-dnd";
 import { ItemTypes } from "../sidebar/ItemTypes";
 import { Button } from "@material-ui/core";
 import MessageCard from "../message_card/MessageCard";
-
+import { useDispatch } from "react-redux";
+import { AddMessage } from "./../../store/Reducers/message";
+import { SetActiveCard } from "../../store/Reducers/cardState";
 const NodesDebugger = () => {
   const nodes = useStoreState((state) => state.nodes);
 
-  console.log("inside debugger", nodes);
-  nodes.map((node, key) => {
-    console.log(`node${key}`, node.data);
-  });
+  // console.log("inside debugger", nodes);
+  // nodes.map((node, key) => {
+  //   console.log(`node${key}`, node.data);
+  // });
 
   return null;
 };
@@ -26,6 +28,7 @@ const nodeTypes = {
 };
 
 const Home = () => {
+  const dispatch = useDispatch();
   const [node_elements, setnode_elements] = useState([]);
   const [number, setnumber] = useState(0);
 
@@ -87,13 +90,17 @@ const Home = () => {
       },
       position: { x: offset.x - 250, y: offset.y - 100 },
     };
+    dispatch(AddMessage(new_element));
     setnode_elements((prev) => [...prev, new_element]);
   };
-
+  const activeMessageCard = (event, element) => {
+    dispatch(SetActiveCard(element.id));
+  };
   return (
     <S.MainContainer>
       <Sidebar />
       <ReactFlow
+        onElementClick={activeMessageCard}
         nodesConnectable={true}
         nodesDraggable={true}
         nodeTypes={nodeTypes}

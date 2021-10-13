@@ -15,7 +15,9 @@ import DeleteIcons from "../../Assets/message_card/DeleteIcon";
 import DuplicateIcons from "../../Assets/message_card/DuplicateIcon";
 import RenameIcons from "../../Assets/message_card/RenameIcon";
 import MessageOption from "./MessageOption";
-
+import { useSelector } from "react-redux";
+import { AddDescription, AddPicture } from "../../store/Reducers/message";
+import { useDispatch } from "react-redux";
 const useStyles = makeStyles({
   menu: {
     display: "flex",
@@ -23,6 +25,10 @@ const useStyles = makeStyles({
 });
 
 const MessageCard = () => {
+  const activeCardId = useSelector(
+    (state) => state.cardState.cardState.activeCardId
+  );
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     picCount: 0,
     pics: undefined,
@@ -42,12 +48,15 @@ const MessageCard = () => {
   const addOptionHandler = () => {
     setoptionsList((prevState) => {
       let prevList = [...prevState];
-      let size = prevList.length;
-      size = size + 1;
       prevList.push("sar");
-      console.log(prevList);
       return prevList;
     });
+  };
+  const descriptionHandler = (e) => {
+    let data = {};
+    data.description = e.target.value;
+    data.id = activeCardId;
+    dispatch(AddDescription(data));
   };
   return (
     <div>
@@ -127,6 +136,10 @@ const MessageCard = () => {
             picCount: state.picCount + 1,
             pics: pics,
           });
+          let data = [];
+          data.push({ ...state, picCount: state.picCount + 1, pics: pics });
+          data.push(activeCardId);
+          dispatch(AddPicture(data));
         }}
         disabled={state.picCount >= 1 ? true : false}
         hidden
@@ -135,7 +148,7 @@ const MessageCard = () => {
       <div className="MessageCardInputBody">
         <TextareaAutosize
           placeholder="Type something..."
-          onChange={() => {}}
+          onChange={descriptionHandler}
           className="MessageCardInputBodyTextArea"
         />
 
