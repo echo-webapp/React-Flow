@@ -1,24 +1,26 @@
 import React, { useState, useCallback } from "react";
 import ReactFlow, {
   useStoreState,
-  useUpdateNodeInternals,
+  addEdge,
+  updateEdge,
+  removeElements,
 } from "react-flow-renderer";
 import Sidebar from "../sidebar/sidebar";
 import * as S from "./styles";
 import { useDrop, useDragLayer } from "react-dnd";
 import { ItemTypes } from "../sidebar/ItemTypes";
-import { Button } from "@material-ui/core";
 import MessageCard from "../message_card/MessageCard";
 import { useDispatch } from "react-redux";
 import { AddMessage } from "./../../store/Reducers/message";
 import { SetActiveCard } from "../../store/Reducers/cardState";
+import { AddEdge } from "../../store/Reducers/edges";
+
 const NodesDebugger = () => {
   const nodes = useStoreState((state) => state.nodes);
+  const edges = useStoreState((state) => state.edges);
 
-  // console.log("inside debugger", nodes);
-  // nodes.map((node, key) => {
-  //   console.log(`node${key}`, node.data);
-  // });
+  // console.log("Nodes", nodes);
+  // console.log("Edges", edges);
 
   return null;
 };
@@ -54,25 +56,6 @@ const Home = () => {
     [currentOffset]
   );
 
-  const buttonclick = (e) => {
-    console.log("clicked", e);
-    setnumber((prev) => prev + 1);
-  };
-
-  const ele = (
-    <div
-      style={{
-        display: "flex",
-        gap: "10px",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Button onClick={(e) => buttonclick(e)}>Add</Button>
-      <div>{number}</div>
-    </div>
-  );
-
   const flowStyles = {
     height: "90vh",
     backgroundColor: isOver ? "#aaa" : "#eee",
@@ -80,7 +63,7 @@ const Home = () => {
     marginRight: 20,
   };
 
-  const addElement = (offset) => {
+  const addElement = useCallback((offset) => {
     const rn = (Math.random() * 1000).toFixed(0);
     const new_element = {
       id: rn,
@@ -92,21 +75,40 @@ const Home = () => {
     };
     dispatch(AddMessage(new_element));
     setnode_elements((prev) => [...prev, new_element]);
-  };
-  const activeMessageCard = (event, element) => {
+  });
+
+  const activeMessageCard = useCallback((event, element) => {
     dispatch(SetActiveCard(element.id));
-  };
+  });
+
+  const onConnect = useCallback((params) => {
+    dispatch(AddEdge(params));
+    setnode_elements((els) => addEdge(params, els));
+  });
+
+  const onEdgeUpdate = useCallback((oldEdge, newConnection) => {
+    setnode_elements((els) => updateEdge(oldEdge, newConnection, els));
+  });
+
+  const onElementsRemove = useCallback((eletoremove) => {
+    setnode_elements((els) => removeElements(eletoremove, els));
+  });
+
   return (
     <S.MainContainer>
       <Sidebar />
       <ReactFlow
         onElementClick={activeMessageCard}
+        onElementsRemove={onElementsRemove}
         nodesConnectable={true}
         nodesDraggable={true}
         nodeTypes={nodeTypes}
         ref={drop}
         elements={node_elements}
         style={flowStyles}
+        onConnect={onConnect}
+        onEdgeUpdate={onEdgeUpdate}
+        maxZoom={10}
       >
         <NodesDebugger />
       </ReactFlow>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import "./MessageCard.css";
 import MessageIcon from "../../Assets/message_card/MessageIcon";
 import AddImageIcon from "../../Assets/message_card/AddImageIcon";
@@ -18,46 +18,60 @@ import MessageOption from "./MessageOption";
 import { useSelector } from "react-redux";
 import { AddDescription, AddPicture } from "../../store/Reducers/message";
 import { useDispatch } from "react-redux";
+import { Handle, removeElements } from "react-flow-renderer";
+
 const useStyles = makeStyles({
   menu: {
     display: "flex",
   },
 });
 
+const edgeStyle = {
+  height: 10,
+  width: 10,
+  top: "50%",
+  borderRadius: "50%",
+};
+
 const MessageCard = () => {
   const activeCardId = useSelector(
     (state) => state.cardState.cardState.activeCardId
   );
+  const image_element = useRef(null);
   const dispatch = useDispatch();
   const [state, setState] = useState({
     picCount: 0,
     pics: undefined,
   });
-  const classes = useStyles();
   const [optionsList, setoptionsList] = useState([]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+
+  const classes = useStyles();
+
+  const handleClick = useCallback((event) => {
     setAnchorEl(event.currentTarget);
-  };
+  });
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const addOptionHandler = () => {
+  const addOptionHandler = useCallback(() => {
     setoptionsList((prevState) => {
       let prevList = [...prevState];
       prevList.push("sar");
       return prevList;
     });
-  };
+  });
+
   const descriptionHandler = (e) => {
     let data = {};
     data.description = e.target.value;
     data.id = activeCardId;
     dispatch(AddDescription(data));
   };
+
   return (
     <div>
       <div className="MessageCardHeader">
@@ -94,7 +108,12 @@ const MessageCard = () => {
               horizontal: "left",
             }}
           >
-            <MenuItem onClick={handleClose}>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                // onElementsRemove;
+              }}
+            >
               <ListItemIcon>
                 <DeleteIcons height="20px" width="20px" />
               </ListItemIcon>
@@ -124,7 +143,7 @@ const MessageCard = () => {
       <input
         type="file"
         accept="image/*"
-        id="uploadPic"
+        ref={image_element}
         onChange={(e) => {
           let file = e.target.files[0];
           if (!file) return false;
@@ -145,26 +164,53 @@ const MessageCard = () => {
         hidden
       />
       {state.picCount >= 1 && <ShowImage state={state} setState={setState} />}
-      <div className="MessageCardInputBody">
+      <div style={{ position: "relative" }} className="MessageCardInputBody">
         <TextareaAutosize
           placeholder="Type something..."
           onChange={descriptionHandler}
           className="MessageCardInputBodyTextArea"
+        />
+        <Handle
+          type="target"
+          position="left"
+          id={(Math.random() * 1000).toFixed(0)}
+          style={edgeStyle}
+        />
+        <Handle
+          type="source"
+          position="right"
+          id={(Math.random() * 1000).toFixed(0)}
+          style={edgeStyle}
         />
 
         {state.picCount === 0 && (
           <div
             className="AddImageIcon"
             onClick={() => {
-              document.getElementById("uploadPic").click();
+              image_element.current.click();
             }}
           >
             <AddImageIcon height="20px" width="20px" />
           </div>
         )}
       </div>
+
       {optionsList.map((Option, key) => (
-        <MessageOption key={key} />
+        <div key={key} style={{ position: "relative" }}>
+          <MessageOption />
+          <Handle
+            type="target"
+            position="left"
+            id={(Math.random() * 1000).toFixed(0)}
+            style={edgeStyle}
+          />
+          <Handle
+            type="source"
+            position="right"
+            id={(Math.random() * 1000).toFixed(0)}
+            style={edgeStyle}
+          />
+        </div>
       ))}
       <button className="AddOptionButton" onClick={addOptionHandler}>
         + Add options

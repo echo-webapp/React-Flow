@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useMemo } from "react";
 import IconButton from "@material-ui/core/IconButton";
+
 const ShowImage = (props) => {
   return (
     <div className="message-uploaded-pic">
