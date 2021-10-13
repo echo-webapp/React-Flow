@@ -85,7 +85,7 @@ const Home = () => {
       data: {
         number: number,
       },
-      position: { x: offset.x - 100, y: offset.y - 100 },
+      position: { x: offset.x - 250, y: offset.y - 100 },
     };
     setnode_elements((prev) => [...prev, new_element]);
   };

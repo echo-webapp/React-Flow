@@ -1,0 +1,62 @@
+.RightBarMainContainer {
+  width: 251px;
+  height: 611px;
+  background: #d1d1d1;
+  border: 1px solid #c7c7c7;
+  box-sizing: border-box;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.RightBarHeader {
+  height: 57px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #b8b8b8;
+}
+.RightBarHeaderName {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #666666;
+  margin-left: 28px;
+}
+.RightBarHeaderImage {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 26px;
+}
+.LabelContainer {
+  width: 211px;
+  height: 172px;
+  background: #ebebeb;
+  border-radius: 10px;
+  margin-top: 28px;
+}
+.LabelContainerHeader {
+  width: 211px;
+  height: 48px;
+  background: #ebebeb;
+  border-radius: 10px 10px 0px 0px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 15px;
+  color: #868686;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+  border-bottom: 1px solid #c7c7c7;
+}
