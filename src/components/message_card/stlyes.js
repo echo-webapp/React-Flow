@@ -1,4 +1,15 @@
-.MessageCardHeader {
+import { withTheme } from "@material-ui/styles";
+import styled from "styled-components";
+import TextareaAutosize from "react-textarea-autosize";
+
+export const connectorStyle = {
+  height: 10,
+  width: 10,
+  top: "50%",
+  borderRadius: "50%",
+};
+
+export const MessageCardHeader = withTheme(styled("div")`
   width: 259px;
   height: 48px;
   background: #ebebeb;
@@ -7,11 +18,13 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #8f8c8c;
-}
-.MessageCardHeaderLeft {
+`);
+
+export const MessageCardHeaderLeft = withTheme(styled("div")`
   display: flex;
-}
-.MessageCardHeaderLeftText {
+`);
+
+export const MessageCardHeaderLeftText = withTheme(styled("div")`
   position: absolute;
   width: 46px;
   height: 15px;
@@ -22,29 +35,37 @@
   font-size: 1em;
   line-height: 15px;
   margin-top: 4px;
-  /* identical to box height */
+`);
 
-  color: #414141;
-}
-.MessageCardHeaderLeftIcon {
-  margin-left: 15px;
-}
-.MessageCardHeaderRight {
-  margin-right: 10px;
-}
-.MessageCardInputBody {
+export const MessageCardHeaderLeftIcon = withTheme(
+  styled("div")`
+    margin-left: 15px;
+  `
+);
+
+export const MessageCardHeaderRight = withTheme(
+  styled("div")`
+    margin-right: 10px;
+  `
+);
+
+export const MessageCardInputBody = withTheme(styled("div")`
   width: 259px;
   min-height: 92px;
   background: #ebebeb;
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 24px 28px 20px 20px;
-}
-.MessageCardInputBodyTextArea {
+`);
+
+export const MessageCardInputBodyTextArea = withTheme(styled(TextareaAutosize)`
   width: 100%;
-  border: none;
+  border: 2px solid #bcbcbc;
+  border-radius: 10px;
+  padding: 10px;
   background-color: transparent;
   resize: none;
   outline: none;
@@ -52,8 +73,9 @@
   overflow: hidden;
   margin-bottom: 14px;
   line-height: 18px;
-}
-.AddOptionButton {
+`);
+
+export const AddOptionButton = withTheme(styled("button")`
   width: 259px;
   height: 44px;
   background: #414141;
@@ -64,16 +86,28 @@
   font-weight: 600;
   font-size: 1em;
   line-height: 15px;
-  /* identical to box height */
   color: #ffffff;
-}
-.AddImageIcon {
+`);
+
+export const AddImage = withTheme(styled("div")`
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  &:hover {
+    div {
+      cursor: pointer;
+    }
+  }
+`);
+
+export const ImageOption = withTheme(styled("div")`
   width: 100%;
   display: flex;
   flex-direction: row-reverse;
   cursor: pointer;
-}
-.message-uploaded-pic {
+`);
+
+export const MessageUploadPic = withTheme(styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,13 +118,15 @@
   border-bottom: 1px solid #8f8c8c;
   /* padding: 24px 28px 20px 20px; */
   cursor: pointer;
-}
-.upload-pic-remove-btn {
+`);
+
+export const UploadPicRemoveButton = withTheme(styled("div")`
   background-color: rgba(0, 0, 0, 0.77) !important;
   padding: 4px !important;
   margin: 2px !important;
-}
-.OptionMenulist {
+`);
+
+export const OptionMenulist = withTheme(styled("div")`
   box-sizing: border-box;
   width: 259px;
   height: 28px;
@@ -106,8 +142,9 @@
   padding-left: 20px;
   /* identical to box height */
   color: #000000;
-}
-.MessageCardOptionInputBody {
+`);
+
+export const MessageCardOptionInputBody = withTheme(styled("div")`
   box-sizing: border-box;
   width: 259px;
   min-height: 28px;
@@ -118,8 +155,11 @@
   justify-content: center;
   padding: 8px 28px 8px 20px;
   border-bottom: 1px solid #8f8c8c;
-}
-.MessageCardOptionInputBodyTextArea {
+`);
+
+export const MessageCardOptionInputBodyTextArea = withTheme(styled(
+  TextareaAutosize
+)`
   width: 100%;
   border: none;
   background-color: transparent;
@@ -133,4 +173,4 @@
   font-weight: 500;
   font-size: 12px;
   color: #000000;
-}
+`);

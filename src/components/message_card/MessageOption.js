@@ -1,13 +1,15 @@
 import React from "react";
-import TextareaAutosize from "react-textarea-autosize";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AddOptionData } from "../../store/Reducers/message";
+import * as S from "./stlyes";
+
 const MessageOption = (props) => {
   const dispatch = useDispatch();
   const activeCardId = useSelector(
     (state) => state.cardState.cardState.activeCardId
   );
+
   const addOptionHandler = (e) => {
     const data = {};
     data.text = e.target.value;
@@ -15,14 +17,14 @@ const MessageOption = (props) => {
     data.id = activeCardId;
     dispatch(AddOptionData(data));
   };
+
   return (
-    <div className="MessageCardOptionInputBody">
-      <TextareaAutosize
+    <S.MessageCardOptionInputBody>
+      <S.MessageCardOptionInputBodyTextArea
         placeholder="Option Number"
         onChange={addOptionHandler}
-        className="MessageCardOptionInputBodyTextArea"
       />
-    </div>
+    </S.MessageCardOptionInputBody>
   );
 };
 

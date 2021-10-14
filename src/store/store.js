@@ -1,20 +1,30 @@
-import { configureStore, combineReducers, compose } from "@reduxjs/toolkit";
 import messageReducer from "./Reducers/message";
 import cardStateReducer from "./Reducers/cardState";
-import EdgeReducer from "./Reducers/edges";
+import edgeReducer from "./Reducers/edges";
+import { configureStore, combineReducers, compose } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
 
 const rootReducer = combineReducers({
   messages: messageReducer,
   cardState: cardStateReducer,
-  edges: EdgeReducer,
+  edges: edgeReducer,
 });
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-  composeEnhancers,
 });
+
+export const persistor = persistStore(store);

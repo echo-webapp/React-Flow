@@ -12,6 +12,7 @@ svg {
   vertical-align: middle;
 }
 `;
+
 export const Theme = createTheme({
   color: {
     black: "black",

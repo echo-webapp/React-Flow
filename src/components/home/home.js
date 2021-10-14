@@ -8,12 +8,14 @@ import ReactFlow, {
 import Sidebar from "../sidebar/sidebar";
 import * as S from "./styles";
 import { useDrop, useDragLayer } from "react-dnd";
+import { Button } from "@mui/material";
 import { ItemTypes } from "../sidebar/ItemTypes";
 import MessageCard from "../message_card/MessageCard";
 import { useDispatch } from "react-redux";
 import { AddMessage } from "./../../store/Reducers/message";
 import { SetActiveCard } from "../../store/Reducers/cardState";
 import { AddEdge } from "../../store/Reducers/edges";
+import CustomEdge from "./customEdge";
 
 const NodesDebugger = () => {
   const nodes = useStoreState((state) => state.nodes);
@@ -82,8 +84,21 @@ const Home = () => {
   });
 
   const onConnect = useCallback((params) => {
+    console.log(params);
     dispatch(AddEdge(params));
-    setnode_elements((els) => addEdge(params, els));
+    const data = {
+      text: "custom edge",
+    };
+    const rn = (Math.random() * 1000).toFixed(0);
+    console.log(rn);
+    const new_param = {
+      id: rn,
+      ...params,
+      data,
+      animated: "true",
+      type: "custom",
+    };
+    setnode_elements((els) => addEdge(new_param, els));
   });
 
   const onEdgeUpdate = useCallback((oldEdge, newConnection) => {
@@ -94,20 +109,38 @@ const Home = () => {
     setnode_elements((els) => removeElements(eletoremove, els));
   });
 
+  const EdgeType = { custom: CustomEdge };
+
+  const onEdgeContextMenu = (event, edge) => {
+    console.log("rightclick");
+    console.log(event, edge);
+  };
+
   return (
     <S.MainContainer>
+      <Button
+        style={{ position: "absolute", left: 0, top: 0 }}
+        onClick={() => {
+          localStorage.removeItem("persist:root");
+        }}
+      >
+        Clear PersistRoot
+      </Button>
       <Sidebar />
       <ReactFlow
         onElementClick={activeMessageCard}
         onElementsRemove={onElementsRemove}
         nodesConnectable={true}
         nodesDraggable={true}
+        connectionLineStyle={{ strokeWidth: 3 }}
         nodeTypes={nodeTypes}
         ref={drop}
         elements={node_elements}
         style={flowStyles}
         onConnect={onConnect}
         onEdgeUpdate={onEdgeUpdate}
+        edgeTypes={EdgeType}
+        onEdgeContextMenu={onEdgeContextMenu}
         maxZoom={10}
       >
         <NodesDebugger />

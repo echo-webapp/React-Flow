@@ -1,5 +1,4 @@
 import React, { useRef, useState, useCallback } from "react";
-import "./MessageCard.css";
 import MessageIcon from "../../Assets/message_card/MessageIcon";
 import AddImageIcon from "../../Assets/message_card/AddImageIcon";
 import IconButton from "@mui/material/IconButton";
@@ -7,7 +6,6 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { makeStyles } from "@material-ui/core";
-import TextareaAutosize from "react-textarea-autosize";
 import ShowImage from "./ShowImage";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import CopyLink from "../../Assets/message_card/CopyLinkIcon";
@@ -21,6 +19,7 @@ import {
   AddPicture,
   AddOption,
 } from "../../store/Reducers/message";
+import * as S from "./stlyes";
 import { useDispatch } from "react-redux";
 import { Handle, removeElements } from "react-flow-renderer";
 
@@ -29,13 +28,6 @@ const useStyles = makeStyles({
     display: "flex",
   },
 });
-
-const edgeStyle = {
-  height: 10,
-  width: 10,
-  top: "50%",
-  borderRadius: "50%",
-};
 
 const MessageCard = () => {
   const activeCardId = useSelector(
@@ -79,14 +71,15 @@ const MessageCard = () => {
 
   return (
     <div>
-      <div className="MessageCardHeader">
-        <div className="MessageCardHeaderLeft">
-          <div className="MessageCardHeaderLeftIcon">
+      <S.MessageCardHeader>
+        <S.MessageCardHeaderLeft>
+          <S.MessageCardHeaderLeftIcon>
             <MessageIcon height="25px" width="25px" />
-          </div>
-          <div className="MessageCardHeaderLeftText">Message</div>
-        </div>
-        <div className="MessageCardHeaderRight">
+          </S.MessageCardHeaderLeftIcon>
+          <S.MessageCardHeaderLeftText>Message</S.MessageCardHeaderLeftText>
+        </S.MessageCardHeaderLeft>
+
+        <S.MessageCardHeaderRight>
           <IconButton
             aria-label="more"
             id="long-button"
@@ -116,7 +109,6 @@ const MessageCard = () => {
             <MenuItem
               onClick={() => {
                 handleClose();
-                // onElementsRemove;
               }}
             >
               <ListItemIcon>
@@ -143,8 +135,8 @@ const MessageCard = () => {
               <div>Rename</div>
             </MenuItem>
           </Menu>
-        </div>
-      </div>
+        </S.MessageCardHeaderRight>
+      </S.MessageCardHeader>
       <input
         type="file"
         accept="image/*"
@@ -169,37 +161,36 @@ const MessageCard = () => {
         hidden
       />
       {state.picCount >= 1 && <ShowImage state={state} setState={setState} />}
-      <div style={{ position: "relative" }} className="MessageCardInputBody">
-        <TextareaAutosize
+      <S.MessageCardInputBody>
+        <S.MessageCardInputBodyTextArea
           placeholder="Type something..."
           onChange={descriptionHandler}
-          className="MessageCardInputBodyTextArea"
         />
         <Handle
           type="target"
           position="left"
           id={(Math.random() * 1000).toFixed(0)}
-          style={edgeStyle}
+          style={S.connectorStyle}
         />
         <Handle
           type="source"
           position="right"
           id={(Math.random() * 1000).toFixed(0)}
-          style={edgeStyle}
+          style={S.connectorStyle}
         />
 
         {state.picCount === 0 && (
-          <div
-            className="AddImageIcon"
-            onClick={() => {
-              image_element.current.click();
-            }}
-          >
-            <AddImageIcon height="20px" width="20px" />
-          </div>
+          <S.AddImage>
+            <div
+              onClick={() => {
+                image_element.current.click();
+              }}
+            >
+              <AddImageIcon height="20px" width="20px" />
+            </div>
+          </S.AddImage>
         )}
-      </div>
-
+      </S.MessageCardInputBody>
       {optionsList.map((Option, key) => (
         <div key={key} style={{ position: "relative" }}>
           <MessageOption key={key} optionsList={optionsList} index={key} />
@@ -207,19 +198,19 @@ const MessageCard = () => {
             type="target"
             position="left"
             id={(Math.random() * 1000).toFixed(0)}
-            style={edgeStyle}
+            style={S.connectorStyle}
           />
           <Handle
             type="source"
             position="right"
             id={(Math.random() * 1000).toFixed(0)}
-            style={edgeStyle}
+            style={S.connectorStyle}
           />
         </div>
       ))}
-      <button className="AddOptionButton" onClick={addOptionHandler}>
+      <S.AddOptionButton onClick={addOptionHandler}>
         + Add options
-      </button>
+      </S.AddOptionButton>
     </div>
   );
 };
