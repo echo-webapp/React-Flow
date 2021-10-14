@@ -16,7 +16,11 @@ import DuplicateIcons from "../../Assets/message_card/DuplicateIcon";
 import RenameIcons from "../../Assets/message_card/RenameIcon";
 import MessageOption from "./MessageOption";
 import { useSelector } from "react-redux";
-import { AddDescription, AddPicture } from "../../store/Reducers/message";
+import {
+  AddDescription,
+  AddPicture,
+  AddOption,
+} from "../../store/Reducers/message";
 import { useDispatch } from "react-redux";
 import { Handle, removeElements } from "react-flow-renderer";
 
@@ -61,6 +65,7 @@ const MessageCard = () => {
     setoptionsList((prevState) => {
       let prevList = [...prevState];
       prevList.push("sar");
+      dispatch(AddOption(activeCardId));
       return prevList;
     });
   });
@@ -197,7 +202,7 @@ const MessageCard = () => {
 
       {optionsList.map((Option, key) => (
         <div key={key} style={{ position: "relative" }}>
-          <MessageOption />
+          <MessageOption key={key} optionsList={optionsList} index={key} />
           <Handle
             type="target"
             position="left"

@@ -36,9 +36,37 @@ const messageSlice = createSlice({
       }
       state.message = temp;
     },
+    AddOption: (state, action) => {
+      const temp = [...state.message];
+      for (let i = 0; i < temp.length; i++) {
+        if (temp[i].id === action.payload) {
+          if (temp[i].data.options === undefined) {
+            temp[i].data.options = [];
+            temp[i].data.options.push("");
+          } else temp[i].data.options.push("");
+        }
+      }
+      state.message = temp;
+    },
+    AddOptionData: (state, action) => {
+      const temp = [...state.message];
+      const ind = action.payload.index;
+      for (let i = 0; i < temp.length; i++) {
+        if (temp[i].id === action.payload.id) {
+          temp[i].data.options[ind] = action.payload.text;
+        }
+      }
+      state.message = temp;
+    },
   },
 });
 
-export const { AddMessage, AddDescription, AddPicture } = messageSlice.actions;
+export const {
+  AddMessage,
+  AddDescription,
+  AddPicture,
+  AddOption,
+  AddOptionData,
+} = messageSlice.actions;
 
 export default messageSlice.reducer;
