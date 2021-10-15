@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ItemTypes } from "./ItemTypes";
 import * as S from "./styles";
 import {
@@ -6,7 +6,7 @@ import {
   connector_tool,
   message_icon,
   movetool,
-} from "../../Assets/sidebar/all_icons";
+} from "../../Assets/leftbar/all_icons";
 import { useDrag, useDragLayer } from "react-dnd";
 
 const Sidebar = () => {
@@ -27,9 +27,12 @@ const Sidebar = () => {
       isDragging: monitor.isDragging(),
     }),
   }));
+  useEffect(() => {
+    console.log(collect);
+  }, [collect]);
 
   return (
-    <S.MainContainer>
+    <S.MainContainer onClick={() => console.log("clickdes")}>
       <S.Container>
         <S.ToolBar>
           <div>
@@ -40,7 +43,7 @@ const Sidebar = () => {
           </div>
         </S.ToolBar>
         <S.MessageBar>
-          <div className="text">Create</div>
+          {/* <div className="text">Create</div> */}
           {!collect.isDragging ? (
             <div className="icon" ref={drag}>
               {message_icon}
@@ -52,7 +55,7 @@ const Sidebar = () => {
           )}
         </S.MessageBar>
         <S.ConnectorBar>
-          <div className="text">Tool</div>
+          {/* <div className="text">Tool</div> */}
           <div className="icon">{connector_tool}</div>
         </S.ConnectorBar>
       </S.Container>

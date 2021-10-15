@@ -15,10 +15,13 @@ svg {
 
 export const Theme = createTheme({
   color: {
-    black: "black",
-    white: "white",
-    light: "#D1D1D1",
-    dark: "#514C4C",
-    border: "#909090",
+    purple: "#6D0FF2",
+    skygreen: "#04BFBF",
+    lightgreen: "#04D9B2",
+    yellow: "#F2B705",
+    orange: "#F29F05",
+    border: "white",
+    greeng: "linear-gradient(135.31deg, #04BFBF 4.68%, #04D9B2 100%)",
+    yellowg: "linear-gradient(135deg, #F2B705 0%, #F29F05 100%)",
   },
 });

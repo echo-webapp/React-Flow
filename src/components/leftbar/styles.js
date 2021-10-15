@@ -3,67 +3,72 @@ import { withTheme } from "@material-ui/core";
 
 export const MainContainer = withTheme(styled("div")`
   display: flex;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
   align-items: center;
-  height: 100vh;
+  justify-content: center;
+  width: 100%;
+  z-index: 9;
+  
 `);
 
 export const Container = withTheme(styled("div")`
   display: flex;
-  flex-direction: column;
   border-radius: 40px;
-  height: 610px;
-  width: 120px;
+  height: 80px;
+  width: 610px;
   margin-left: 20px;
-  background-color: ${({ theme }) => theme.color.light};
+  background: ${(props) =>
+    `linear-gradient(to right, ${props.theme.color.skygreen}, ${props.theme.color.lightgreen})`};
 `);
 
 export const ToolBar = withTheme(styled("div")`
   display: flex;
-  align-items: center;
-  border-bottom: 1px solid ${({ theme }) => theme.color.border};
+  flex-direction: column;
+  justify-content: center;
+  /* border-bottom: 1px solid ${({ theme }) => theme.color.border}; */
   div {
     div {
-      padding: 20px;
+      padding: 10px;
     }
     .move-tool {
       border-top-left-radius: 40px;
-      background-color: ${({ theme }) => theme.color.dark};
+      background-color: ${({ theme }) => theme.color.purple};
     }
     .hand-tool {
-      svg {
+      /* svg {
         width: 17px;
         height: 20px;
-      }
-      border-top-right-radius: 40px;
+      } */
+      /* border-top-right-radius: 40px; */
     }
   }
 `);
 
 export const MessageBar = withTheme(styled("div")`
-  border-bottom: 1px solid ${({ theme }) => theme.color.border};
-  padding-top: 32px;
-  padding-bottom: 28px;
+  border-right: 1px solid ${({ theme }) => theme.color.border};
+  padding-right: 32px;
+  padding-left: 28px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px;
   .icon {
-    background-color: grey;
+    /* background-color: grey;
     padding: 5px;
     border-radius: 10px;
     svg {
       path {
         fill: white;
       }
-    }
+    } */
   }
 `);
 
 export const ConnectorBar = withTheme(styled("div")`
-  border-bottom: 1px solid ${({ theme }) => theme.color.border};
-  padding-top: 32px;
-  padding-bottom: 28px;
+  border-right: 1px solid ${({ theme }) => theme.color.border};
+  padding-right: 32px;
+  padding-left: 28px;
   display: flex;
   flex-direction: column;
   justify-content: center;

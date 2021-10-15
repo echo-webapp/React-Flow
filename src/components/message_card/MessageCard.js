@@ -19,7 +19,7 @@ import {
   AddPicture,
   AddOption,
 } from "../../store/Reducers/message";
-import * as S from "./stlyes";
+import * as S from "./styles";
 import { useDispatch } from "react-redux";
 import { Handle, removeElements } from "react-flow-renderer";
 

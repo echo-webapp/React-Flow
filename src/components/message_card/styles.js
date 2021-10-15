@@ -12,7 +12,7 @@ export const connectorStyle = {
 export const MessageCardHeader = withTheme(styled("div")`
   width: 259px;
   height: 48px;
-  background: #ebebeb;
+  background: ${(props) => props.theme.color.yellowg};
   border-radius: 10px 10px 0px 0px;
   display: flex;
   align-items: center;
@@ -52,7 +52,7 @@ export const MessageCardHeaderRight = withTheme(
 export const MessageCardInputBody = withTheme(styled("div")`
   width: 259px;
   min-height: 92px;
-  background: #ebebeb;
+  background: ${(props) => props.theme.color.yellowg};
   display: flex;
   position: relative;
   flex-direction: column;
@@ -63,7 +63,7 @@ export const MessageCardInputBody = withTheme(styled("div")`
 
 export const MessageCardInputBodyTextArea = withTheme(styled(TextareaAutosize)`
   width: 100%;
-  border: 2px solid #bcbcbc;
+  border: none;
   border-radius: 10px;
   padding: 10px;
   background-color: transparent;
@@ -73,19 +73,21 @@ export const MessageCardInputBodyTextArea = withTheme(styled(TextareaAutosize)`
   overflow: hidden;
   margin-bottom: 14px;
   line-height: 18px;
+  /* &:focus {
+    border: 2px solid #bcbcbc;
+  } */
 `);
 
 export const AddOptionButton = withTheme(styled("button")`
   width: 259px;
   height: 44px;
-  background: #414141;
+  background: ${(props) => props.theme.color.purple};
   border-radius: 0px 0px 10px 10px;
+  border: none;
   cursor: pointer;
   font-family: Poppins;
-  font-style: normal;
   font-weight: 600;
   font-size: 1em;
-  line-height: 15px;
   color: #ffffff;
 `);
 
@@ -96,6 +98,10 @@ export const AddImage = withTheme(styled("div")`
   &:hover {
     div {
       cursor: pointer;
+      svg {
+        fill: white;
+        stroke:white;
+      }
     }
   }
 `);
@@ -127,7 +133,6 @@ export const UploadPicRemoveButton = withTheme(styled("div")`
 `);
 
 export const OptionMenulist = withTheme(styled("div")`
-  box-sizing: border-box;
   width: 259px;
   height: 28px;
   display: flex;
@@ -145,10 +150,9 @@ export const OptionMenulist = withTheme(styled("div")`
 `);
 
 export const MessageCardOptionInputBody = withTheme(styled("div")`
-  box-sizing: border-box;
   width: 259px;
   min-height: 28px;
-  background: #c4c4c4;
+  background: ${(props) => props.theme.color.yellowg};
   display: flex;
   flex-direction: column;
   align-items: center;

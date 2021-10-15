@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AddOptionData } from "../../store/Reducers/message";
-import * as S from "./stlyes";
+import * as S from "./styles";
 
 const MessageOption = (props) => {
   const dispatch = useDispatch();

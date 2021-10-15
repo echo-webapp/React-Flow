@@ -1,9 +1,35 @@
 import React, { useMemo } from "react";
 import IconButton from "@material-ui/core/IconButton";
+import styled from "styled-components";
+import { withTheme } from "@material-ui/styles";
+
+const MessageImage = withTheme(styled("div")`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 259px;
+  height: 150px;
+  background: ${(props) => props.theme.color.yellow};
+  border-bottom: 1px solid #8f8c8c;
+  cursor: pointer;
+`);
+
+const MessageImageRemoveIcon = withTheme(styled("div")`
+  background-color: ${(props) => props.theme.color.purple} !important;
+  transform: translate(-50%, -50%);
+  height: 25px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 5px;
+`);
 
 const ShowImage = (props) => {
   return (
-    <div className="message-uploaded-pic">
+    <MessageImage>
       {props.state.picCount > 0
         ? props.state.pics.map((pic, index) => {
             return (
@@ -18,11 +44,10 @@ const ShowImage = (props) => {
                   width: "200px",
                 }}
               >
-                <IconButton
+                <MessageImageRemoveIcon
                   aria-label="remove pic"
                   aria-controls="removes pic"
                   aria-haspopup="false"
-                  className="upload-pic-remove-btn"
                   onClick={() => {
                     props.setState({
                       ...props.state,
@@ -46,12 +71,12 @@ const ShowImage = (props) => {
                       ></path>
                     </g>
                   </svg>
-                </IconButton>
+                </MessageImageRemoveIcon>
               </div>
             );
           })
         : false}
-    </div>
+    </MessageImage>
   );
 };
 
