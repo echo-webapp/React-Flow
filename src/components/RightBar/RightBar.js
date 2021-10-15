@@ -2,6 +2,7 @@ import React from "react";
 import "./RightBar.css";
 import Avatar from "@mui/material/Avatar";
 import Labels from "./labels";
+import Description from "./Description";
 const RightBar = () => {
   return (
     <div className="RightBarMainContainer">
@@ -16,6 +17,7 @@ const RightBar = () => {
         </div>
       </div>
       <Labels />
+      <Description />
     </div>
   );
 };

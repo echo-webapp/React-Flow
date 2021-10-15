@@ -36,6 +36,8 @@
   justify-content: center;
   margin-right: 26px;
 }
+
+/* Label */
 .LabelContainer {
   width: 211px;
   height: 172px;
@@ -59,4 +61,105 @@
   justify-content: center;
   padding-left: 20px;
   border-bottom: 1px solid #c7c7c7;
+}
+.LabelList {
+  box-sizing: border-box;
+  padding: 25px;
+}
+.LabelListItem {
+  display: flex;
+  justify-content: space-between;
+}
+.LabelListItem5 {
+  margin-top: 7px;
+  margin-right: 8px;
+  width: 5.98px;
+  height: 6px;
+  background: #e28383;
+  transform: rotate(90deg);
+  border-radius: 50%;
+}
+.LabelListItem6 {
+  margin-top: 7px;
+  margin-right: 8px;
+  width: 5.98px;
+  height: 6px;
+  background: #d9d572;
+  transform: rotate(90deg);
+  border-radius: 50%;
+}
+
+.LabelListItem7 {
+  margin-top: 7px;
+  margin-right: 8px;
+  width: 5.98px;
+  height: 6px;
+  background: #8699dd;
+  transform: rotate(90deg);
+  border-radius: 50%;
+}
+.LabelListItem8 {
+  margin-top: 7px;
+  margin-right: 8px;
+  width: 5.98px;
+  height: 6px;
+  background: #8acf7f;
+  transform: rotate(90deg);
+  border-radius: 50%;
+}
+.LabelListItem9 {
+  margin-top: 7px;
+  margin-right: 8px;
+  width: 5.98px;
+  height: 6px;
+  background: #c48ebe;
+  transform: rotate(90deg);
+  border-radius: 50%;
+}
+.LabelListItem0 {
+  display: flex;
+}
+.LabelListItem2 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 15px;
+
+  color: #666666;
+}
+.LabelListItem3 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 15px;
+  /* identical to box height */
+
+  color: #666666;
+}
+
+/* Description */
+.LeftDescriptionContainer {
+  width: 211px;
+  height: 149px;
+  background: #ebebeb;
+  border-radius: 10px;
+  margin-top: 31px;
+}
+.DescriptionHeader {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.DescriptionHeaderText {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 15px;
+  /* identical to box height */
+
+  color: #8d8a8a;
 }
