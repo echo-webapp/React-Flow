@@ -194,7 +194,7 @@ const MessageCard = () => {
       {optionsList.map((Option, key) => (
         <div key={key} style={{ position: "relative" }}>
           <MessageOption key={key} optionsList={optionsList} index={key} />
-          <Handle
+          {/* <Handle
             type="target"
             position="left"
             id={(Math.random() * 1000).toFixed(0)}
@@ -205,7 +205,7 @@ const MessageCard = () => {
             position="right"
             id={(Math.random() * 1000).toFixed(0)}
             style={S.connectorStyle}
-          />
+          /> */}
         </div>
       ))}
       <S.AddOptionButton onClick={addOptionHandler}>

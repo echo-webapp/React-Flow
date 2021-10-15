@@ -11,18 +11,18 @@ import { useDrop, useDragLayer } from "react-dnd";
 import { Button } from "@mui/material";
 import { ItemTypes } from "../sidebar/ItemTypes";
 import MessageCard from "../message_card/MessageCard";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AddMessage } from "./../../store/Reducers/message";
 import { SetActiveCard } from "../../store/Reducers/cardState";
-import { AddEdge } from "../../store/Reducers/edges";
+import { AddEdge } from "../../store/Reducers/message";
 import CustomEdge from "./customEdge";
 
 const NodesDebugger = () => {
   const nodes = useStoreState((state) => state.nodes);
   const edges = useStoreState((state) => state.edges);
 
-  // console.log("Nodes", nodes);
-  // console.log("Edges", edges);
+  console.log("Nodes", nodes);
+  console.log("Edges", edges);
 
   return null;
 };
@@ -33,7 +33,7 @@ const nodeTypes = {
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [node_elements, setnode_elements] = useState([]);
+  const node_elements = useSelector((store) => store.messages.message);
   const [number, setnumber] = useState(0);
 
   const { currentOffset } = useDragLayer((monitor) => ({
@@ -76,7 +76,7 @@ const Home = () => {
       position: { x: offset.x - 250, y: offset.y - 100 },
     };
     dispatch(AddMessage(new_element));
-    setnode_elements((prev) => [...prev, new_element]);
+    // setnode_elements((prev) => [...prev, new_element]);
   });
 
   const activeMessageCard = useCallback((event, element) => {
@@ -85,28 +85,24 @@ const Home = () => {
 
   const onConnect = useCallback((params) => {
     console.log(params);
-    dispatch(AddEdge(params));
-    const data = {
-      text: "custom edge",
-    };
     const rn = (Math.random() * 1000).toFixed(0);
-    console.log(rn);
     const new_param = {
-      id: rn,
       ...params,
-      data,
+      id: rn,
       animated: "true",
       type: "custom",
     };
-    setnode_elements((els) => addEdge(new_param, els));
+
+    dispatch(AddEdge(new_param));
+    // setnode_elements((els) => addEdge(new_param, els));
   });
 
   const onEdgeUpdate = useCallback((oldEdge, newConnection) => {
-    setnode_elements((els) => updateEdge(oldEdge, newConnection, els));
+    // setnode_elements((els) => updateEdge(oldEdge, newConnection, els));
   });
 
   const onElementsRemove = useCallback((eletoremove) => {
-    setnode_elements((els) => removeElements(eletoremove, els));
+    // setnode_elements((els) => removeElements(eletoremove, els));
   });
 
   const EdgeType = { custom: CustomEdge };

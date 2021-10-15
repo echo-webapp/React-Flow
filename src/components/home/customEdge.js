@@ -26,7 +26,7 @@ export default function CustomEdge({
 
   const edge_style = {
     stroke: "blue",
-strokeWidth: 4,
+    strokeWidth: 4,
   };
   console.log(sourceX, sourceY, targetX, targetY);
 

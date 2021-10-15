@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { addEdge } from "react-flow-renderer";
 
 const initialState = {
   message: [],
+  edges: [],
 };
 
 const messageSlice = createSlice({
@@ -12,6 +14,16 @@ const messageSlice = createSlice({
       const temp = [...state.message];
       temp.push(action.payload);
       state.message = temp;
+      console.log(state.message);
+    },
+    AddEdge: (state, action) => {
+      console.log(action.payload);
+      const new_edge = {
+        source: action.payload.source,
+        target: action.payload.target,
+      };
+      state.edges.push(new_edge);
+      state.message = addEdge(action.payload, state.message);
     },
     AddDescription: (state, action) => {
       const temp = [...state.message];
@@ -67,6 +79,7 @@ export const {
   AddPicture,
   AddOption,
   AddOptionData,
+  AddEdge,
 } = messageSlice.actions;
 
 export default messageSlice.reducer;
