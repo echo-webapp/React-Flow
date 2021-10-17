@@ -1,5 +1,5 @@
 import React from "react";
-import AddImageIcon from "./AddImage1.svg";
+import AddImageIcon from "./AddImage.svg";
 const ImageIcon = (props) => {
   return (
     <div

@@ -72,13 +72,15 @@ const MessageCard = () => {
   return (
     <div>
       <S.MessageCardHeader>
+        {/* <S.MessageCardStatus> */}
+        <S.MessageCardStatusTag>Done</S.MessageCardStatusTag>
+        {/* </S.MessageCardStatus> */}
         <S.MessageCardHeaderLeft>
           <S.MessageCardHeaderLeftIcon>
             <MessageIcon height="25px" width="25px" />
           </S.MessageCardHeaderLeftIcon>
           <S.MessageCardHeaderLeftText>Message</S.MessageCardHeaderLeftText>
         </S.MessageCardHeaderLeft>
-
         <S.MessageCardHeaderRight>
           <IconButton
             aria-label="more"
