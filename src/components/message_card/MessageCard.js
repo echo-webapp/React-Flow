@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import MessageIcon from "../../Assets/message_card/MessageIcon";
 import AddImageIcon from "../../Assets/message_card/AddImageIcon";
 import IconButton from "@mui/material/IconButton";
@@ -18,6 +18,8 @@ import {
   AddDescription,
   AddPicture,
   AddOption,
+  removeMessage,
+  ChangeTitle,
 } from "../../store/Reducers/message";
 import * as S from "./styles";
 import { useDispatch } from "react-redux";
@@ -29,10 +31,12 @@ const useStyles = makeStyles({
   },
 });
 
-const MessageCard = () => {
-  const activeCardId = useSelector(
-    (state) => state.cardState.cardState.activeCardId
-  );
+const MessageCard = (props) => {
+  const [activeCardId, message] = useSelector((state) => [
+    state.cardState.cardState.activeCardId,
+    state.messages.message,
+  ]);
+  const [desc, setdesc] = useState("");
   const image_element = useRef(null);
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -40,10 +44,38 @@ const MessageCard = () => {
     pics: undefined,
   });
   const [optionsList, setoptionsList] = useState([]);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [title, settitle] = useState("");
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const classes = useStyles();
+
+  useEffect(() => {
+    message.map((message) => {
+      if (message.id == props.id) {
+        setoptionsList(message.data.options);
+      }
+      return null;
+    });
+  }, [message]);
+
+  useEffect(() => {
+    message.map((message) => {
+      if (message.id == props.id) {
+        setdesc(message.data.description);
+      }
+      return null;
+    });
+  }, [message]);
+
+  useEffect(() => {
+    message.map((message) => {
+      if (message.id == props.id) {
+        settitle(message.data.title);
+      }
+      return null;
+    });
+  }, [message]);
 
   const handleClick = useCallback((event) => {
     setAnchorEl(event.currentTarget);
@@ -53,33 +85,30 @@ const MessageCard = () => {
     setAnchorEl(null);
   };
 
-  const addOptionHandler = useCallback(() => {
-    setoptionsList((prevState) => {
-      let prevList = [...prevState];
-      prevList.push("sar");
-      dispatch(AddOption(activeCardId));
-      return prevList;
-    });
-  });
-
   const descriptionHandler = (e) => {
     let data = {};
-    data.description = e.target.value;
+    data.value = e.target.value;
     data.id = activeCardId;
-    dispatch(AddDescription(data));
+    dispatch(AddDescription({ data: data, id: props.id }));
+  };
+
+  const removeNode = () => {
+    dispatch(removeMessage(activeCardId));
+  };
+
+  const changeTitle = (e) => {
+    dispatch(ChangeTitle({ id: props.id, value: e.target.value }));
   };
 
   return (
-    <div>
+    <S.Container>
       <S.MessageCardHeader>
-        {/* <S.MessageCardStatus> */}
         <S.MessageCardStatusTag color="secondary"></S.MessageCardStatusTag>
-        {/* </S.MessageCardStatus> */}
         <S.MessageCardHeaderLeft>
           <S.MessageCardHeaderLeftIcon>
             <MessageIcon height="25px" width="25px" />
           </S.MessageCardHeaderLeftIcon>
-          <S.MessageCardHeaderLeftText>Message</S.MessageCardHeaderLeftText>
+          <S.MessageCardHeaderLeftText onChange={changeTitle} value={title} />
         </S.MessageCardHeaderLeft>
         <S.MessageCardHeaderRight>
           <IconButton
@@ -110,6 +139,7 @@ const MessageCard = () => {
           >
             <MenuItem
               onClick={() => {
+                removeNode();
                 handleClose();
               }}
             >
@@ -123,12 +153,6 @@ const MessageCard = () => {
                 <DuplicateIcons height="20px" width="20px" />
               </ListItemIcon>
               <div>Duplicate</div>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <CopyLink height="20px" width="20px" />
-              </ListItemIcon>
-              <div>CopyLink</div>
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <ListItemIcon>
@@ -167,20 +191,19 @@ const MessageCard = () => {
         <S.MessageCardInputBodyTextArea
           placeholder="Type something..."
           onChange={descriptionHandler}
+          value={desc}
         />
         <Handle
           className="connector"
           type="target"
           position="left"
           id={(Math.random() * 1000).toFixed(0)}
-          // style={S.connectorStyle}
         />
         <Handle
           type="source"
           className="connector"
           position="right"
           id={(Math.random() * 1000).toFixed(0)}
-          // style={S.connectorStyle}
         />
 
         {state.picCount === 0 && (
@@ -197,7 +220,11 @@ const MessageCard = () => {
       </S.MessageCardInputBody>
       {optionsList.map((Option, key) => (
         <div key={key} style={{ position: "relative" }}>
-          <MessageOption key={key} optionsList={optionsList} index={key} />
+          <MessageOption
+            optiontext={optionsList[key]}
+            optionsList={optionsList}
+            index={key}
+          />
           {/* <Handle
             type="target"
             position="left"
@@ -212,10 +239,10 @@ const MessageCard = () => {
           /> */}
         </div>
       ))}
-      <S.AddOptionButton onClick={addOptionHandler}>
+      <S.AddOptionButton onClick={() => dispatch(AddOption(activeCardId))}>
         + Add options
       </S.AddOptionButton>
-    </div>
+    </S.Container>
   );
 };
 

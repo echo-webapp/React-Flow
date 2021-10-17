@@ -6,6 +6,10 @@ import {
   connector_tool,
   message_icon,
   movetool,
+  template2,
+  template3,
+  template4,
+  template5,
 } from "../../Assets/leftbar/all_icons";
 import { useDrag, useDragLayer } from "react-dnd";
 
@@ -27,9 +31,6 @@ const Sidebar = () => {
       isDragging: monitor.isDragging(),
     }),
   }));
-  useEffect(() => {
-    console.log(collect);
-  }, [collect]);
 
   return (
     <S.MainContainer onClick={() => console.log("clickdes")}>
@@ -58,6 +59,12 @@ const Sidebar = () => {
           {/* <div className="text">Tool</div> */}
           <div className="icon">{connector_tool}</div>
         </S.ConnectorBar>
+        <S.Templates>
+          <div className="icon">{template2}</div>
+          <div className="icon">{template3}</div>
+          <div className="icon">{template4}</div>
+          <div className="icon">{template5}</div>
+        </S.Templates>
       </S.Container>
     </S.MainContainer>
   );

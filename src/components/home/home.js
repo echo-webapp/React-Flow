@@ -22,15 +22,10 @@ import { useTheme } from "@material-ui/styles";
 const NodesDebugger = () => {
   const nodes = useStoreState((state) => state.nodes);
   const edges = useStoreState((state) => state.edges);
-
-  // console.log("Nodes", nodes);
-  // console.log("Edges", edges);
+  // console.log("nodes", nodes);
+  // console.log("edges", edges);
 
   return null;
-};
-
-const nodeTypes = {
-  special: MessageCard,
 };
 
 const Home = () => {
@@ -38,7 +33,9 @@ const Home = () => {
   const node_elements = useSelector((store) => store.messages.message);
   const [number, setnumber] = useState(0);
 
-  const theme = useTheme();
+  const nodeTypes = {
+    specialNode: MessageCard,
+  };
 
   const { currentOffset } = useDragLayer((monitor) => ({
     item: monitor.getItem(),
@@ -48,7 +45,7 @@ const Home = () => {
     isDragging: monitor.isDragging(),
   }));
 
-  const [{ isOver }, drop] = useDrop(
+  const [{ isover }, drop] = useDrop(
     () => ({
       accept: ItemTypes.message_card,
       drop: (item, monitor) => {
@@ -56,37 +53,25 @@ const Home = () => {
         return null;
       },
       collect: (monitor) => ({
-        isOver: !!monitor.isOver(),
+        isover: !!monitor.isOver(),
       }),
     }),
     [currentOffset]
   );
 
-  useEffect(() => {
-    console.log(isOver);
-  }, [isOver]);
-
-  const ReactFlowStyles = {
-    height: "100vh",
-    // background: isOver
-    //   ? `linear-gradient(135.31deg, rgba(4, 191, 191, 0.2) 4.68%, rgba(4, 217, 178, 0.2) 100%)`
-    //   : `linear-gradient(135.31deg, rgba(4, 191, 191, 0.1) 4.68%, rgba(4, 217, 178, 0.1) 100%)`,
-    borderRadius: "50px",
-    marginRight: 20,
-  };
-
   const addElement = useCallback((offset) => {
     const rn = (Math.random() * 1000).toFixed(0);
     const new_element = {
       id: rn,
-      type: "special",
+      type: "specialNode",
       data: {
-        number: number,
+        description: "",
+        options: [],
+        title: "Message",
       },
-      position: { x: offset.x - 250, y: offset.y - 100 },
+      position: { x: offset.x - 100, y: offset.y - 90 },
     };
     dispatch(AddMessage(new_element));
-    // setnode_elements((prev) => [...prev, new_element]);
   });
 
   const activeMessageCard = useCallback((event, element) => {
@@ -94,13 +79,11 @@ const Home = () => {
   });
 
   const onConnect = useCallback((params) => {
-    console.log(params);
     const rn = (Math.random() * 1000).toFixed(0);
     const new_param = {
       ...params,
       id: rn,
-      // animated: "true",
-      type: "custom",
+      type: "customEdge",
     };
 
     dispatch(AddEdge(new_param));
@@ -115,7 +98,7 @@ const Home = () => {
     // setnode_elements((els) => removeElements(eletoremove, els));
   });
 
-  const EdgeType = { custom: CustomEdge };
+  const EdgeType = { customEdge: CustomEdge };
 
   const onEdgeContextMenu = (event, edge) => {
     console.log("rightclick");
@@ -132,7 +115,6 @@ const Home = () => {
       >
         Clear PersistRoot
       </Button>
-      <Leftbar />
       <S.ReactFlowContainer
         onElementClick={activeMessageCard}
         onElementsRemove={onElementsRemove}
@@ -142,14 +124,14 @@ const Home = () => {
         nodeTypes={nodeTypes}
         ref={drop}
         elements={node_elements}
-        // style={ReactFlowStyles}
-        isOver={isOver}
+        isover={isover}
         onConnect={onConnect}
         onEdgeUpdate={onEdgeUpdate}
         edgeTypes={EdgeType}
         onEdgeContextMenu={onEdgeContextMenu}
         maxZoom={10}
       >
+        <Leftbar />
         <NodesDebugger />
       </S.ReactFlowContainer>
       <Rightbar />

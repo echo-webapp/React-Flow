@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { withTheme } from "@material-ui/core";
 
-export const MainContainer = withTheme(styled("div")`
+export const MainContainer = styled.div`
   display: flex;
   position: absolute;
   bottom: 20px;
@@ -10,67 +9,74 @@ export const MainContainer = withTheme(styled("div")`
   justify-content: center;
   width: 100%;
   z-index: 9;
-`);
+  transform: scale(1.2);
+`;
 
-export const Container = withTheme(styled("div")`
+export const Container = styled.div`
   display: flex;
-  border-radius: 40px;
-  height: 80px;
+  border-radius: 20px;
+  height: 60px;
   width: 610px;
   margin-left: 20px;
   background: var(--white);
-  border: 1px solid var(--primary-color);
-`);
+  border: 2px solid var(--primary-color);
+`;
 
-export const ToolBar = withTheme(styled("div")`
+export const ToolBar = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
   border-right: var(--primary-color);
   div {
     div {
-      padding: 10px;
+      height: 30px;
+      width: 50px;
     }
     .move-tool {
-      border-top-left-radius: 40px;
+      border-top-left-radius: 19px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background: var(--gradient-green);
+      border-right: 2px solid var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
     }
     .hand-tool {
-      /* svg {
-        width: 17px;
-        height: 20px;
-      } */
-      /* border-top-right-radius: 40px; */
+      position: relative;
+      height: 26px;
+      width: 50px;
+      border-bottom-left-radius: 19px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-right: 2px solid var(--primary-color);
     }
   }
-`);
+`;
 
-export const MessageBar = withTheme(styled("div")`
-  border-right: 1px solid var(--primary-color);
+export const MessageBar = styled.div`
+  border-right: 2px solid var(--primary-color);
   padding-right: 32px;
   padding-left: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
-  .icon {
-    /* background-color: grey;
-    padding: 5px;
-    border-radius: 10px;
-    svg {
-      path {
-        fill: white;
-      }
-    } */
-  }
-`);
+`;
 
-export const ConnectorBar = withTheme(styled("div")`
-  border-right: 1px solid var(--primary-color);
+export const ConnectorBar = styled.div`
+  border-right: 2px solid var(--primary-color);
   padding-right: 32px;
   padding-left: 28px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const Templates = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 28px;
   gap: 16px;
-`);
+`;

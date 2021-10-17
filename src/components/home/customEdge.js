@@ -24,7 +24,6 @@ export default function CustomEdge({
   });
   const markerEnd = getMarkerEnd(arrowHeadType, markerEndId);
 
-  console.log(sourceX, sourceY, targetX, targetY);
 
   return (
     <>

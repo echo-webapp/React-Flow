@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import TextareaAutosize from "react-textarea-autosize";
 
+export const Container = styled.div`
+  cursor: default;
+`;
+
 export const MessageCardStatus = styled.div`
   height: 15px;
   width: 100%;
@@ -40,12 +44,16 @@ export const MessageCardHeaderLeft = styled.div`
   margin-bottom: 7px;
 `;
 
-export const MessageCardHeaderLeftText = styled.div`
+export const MessageCardHeaderLeftText = styled(TextareaAutosize)`
   position: absolute;
-  width: 46px;
+  resize: none;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  width: 150px;
   height: 15px;
+  overflow: hidden;
   margin-left: 50px;
-  font-family: Poppins;
   font-style: normal;
   font-weight: 600;
   font-size: 1em;
@@ -106,7 +114,6 @@ export const AddOptionButton = styled.button`
   border-radius: 0px 0px 10px 10px;
   border: none;
   cursor: pointer;
-  font-family: Poppins;
   font-weight: 600;
   font-size: 1em;
   color: #ffffff;
@@ -160,7 +167,6 @@ export const OptionMenulist = styled.div`
   align-items: center;
   justify-content: flex-start;
   background: #c4c4c4;
-  font-family: Poppins;
   font-style: normal;
   font-weight: 500;
   font-size: 11px;
@@ -179,7 +185,15 @@ export const MessageCardOptionInputBody = styled.div`
   align-items: center;
   justify-content: center;
   padding: 8px 28px 8px 20px;
-  border-bottom: 1px solid #8f8c8c;
+  border-bottom: ${(props) => {
+    console.log("border", props.border, "index", props.index);
+    return props.border[props.index] == true &&
+      !(props.index == props.total_option - 1)
+      ? "2px solid var(--primary-color)"
+      : "none";
+  }};
+  border-top: ${(props) =>
+    props.border[props.index] ? "2px solid var(--primary-color)" : "none"};
 `;
 
 export const MessageCardOptionInputBodyTextArea = styled(TextareaAutosize)`
@@ -191,9 +205,22 @@ export const MessageCardOptionInputBodyTextArea = styled(TextareaAutosize)`
   height: min-content;
   overflow: hidden;
   line-height: 18px;
-  font-family: Poppins;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   color: #000000;
+`;
+
+export const CrossButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+  &:hover {
+    cursor: pointer;
+  }
 `;

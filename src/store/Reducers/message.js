@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import { addEdge } from "react-flow-renderer";
+import { removeElements } from "react-flow-renderer";
 
 const initialState = {
   message: [],
@@ -11,30 +12,60 @@ const messageSlice = createSlice({
   name: "messages",
   reducers: {
     AddMessage: (state, action) => {
-      const temp = [...state.message];
-      temp.push(action.payload);
-      state.message = temp;
-      console.log(state.message);
+      state.message.push(action.payload);
+      console.log(current(state.message));
     },
-    AddEdge: (state, action) => {
-      console.log(action.payload);
-      const new_edge = {
-        source: action.payload.source,
-        target: action.payload.target,
-      };
-      if (state.edges === undefined) state.edges = [];
-      state.edges.push(new_edge);
-      state.message = addEdge(action.payload, state.message);
-    },
-    AddDescription: (state, action) => {
-      const temp = [...state.message];
-      for (let i = 0; i < temp.length; i++) {
-        if (temp[i].id === action.payload.id) {
-          temp[i].data.description = action.payload.description;
+
+    removeMessage: (state, action) => {
+      // console.log("id", action.payload);
+      const filtered_nodes = [];
+
+      let node_index = null;
+      let edge_index = [];
+      for (let i = 0; i < state.message.length; i++) {
+        if (state.message[i].id == action.payload) {
+          node_index = i;
         }
       }
-      state.message = temp;
+      if (node_index != null) {
+        state.message.splice(node_index, 1);
+      }
+
+      for (let i = 0; i < state.message.length; i++) {
+        if (
+          action.payload == state.message[i].source ||
+          action.payload == state.message[i].target
+        ) {
+          edge_index.push(i);
+        }
+      }
+
+      // console.log("edge", edge_index);
+      if (edge_index.length > 0) {
+        for (let i = 0; i < edge_index.length; i++) {
+          state.message.splice(edge_index[i], 1);
+        }
+      }
+
+      console.log("Final_Nodes", current(state.message));
     },
+
+    AddEdge: (state, action) => {
+      // console.log(action.payload);
+      state.message = addEdge(action.payload, state.message);
+    },
+
+    AddDescription: (state, action) => {
+      const arr = [...state.message];
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].id === action.payload.id) {
+          arr[i].data.description = action.payload.data.value;
+        }
+      }
+
+      state.message = arr;
+    },
+
     AddPicture: (state, action) => {
       const temp = [...state.message];
       const sar = Object.assign(action.payload[0].pics[0]);
@@ -49,27 +80,35 @@ const messageSlice = createSlice({
       }
       state.message = temp;
     },
+
     AddOption: (state, action) => {
       const temp = [...state.message];
       for (let i = 0; i < temp.length; i++) {
         if (temp[i].id === action.payload) {
-          if (temp[i].data.options === undefined) {
-            temp[i].data.options = [];
-            temp[i].data.options.push("");
-          } else temp[i].data.options.push("");
+          temp[i].data.options.push("");
         }
       }
       state.message = temp;
     },
+
     AddOptionData: (state, action) => {
-      const temp = [...state.message];
-      const ind = action.payload.index;
-      for (let i = 0; i < temp.length; i++) {
-        if (temp[i].id === action.payload.id) {
-          temp[i].data.options[ind] = action.payload.text;
+      const nodes = state.message;
+      for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i].id == action.payload.id) {
+          nodes[i].data.options[action.payload.index] = action.payload.text;
         }
       }
-      state.message = temp;
+      state.message = nodes;
+    },
+
+    DeleteOption: (state, action) => {
+      const nodes = state.message;
+      for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i].id == action.payload.id) {
+          nodes[i].data.options.splice(action.payload.index, 1);
+        }
+      }
+      state.message = nodes;
     },
     AddRightSideDescription: (state, action) => {
       const temp = [...state.message];
@@ -89,6 +128,13 @@ const messageSlice = createSlice({
       }
       state.message = temp;
     },
+    ChangeTitle: (state, action) => {
+      for (let i = 0; i < state.message.length; i++) {
+        if (state.message[i].id == action.payload.id) {
+          state.message[i].data.title = action.payload.value;
+        }
+      }
+    },
   },
 });
 
@@ -98,9 +144,12 @@ export const {
   AddPicture,
   AddOption,
   AddOptionData,
+  DeleteOption,
   AddEdge,
   AddRightSideDescription,
   DeleteRightSideDescription,
+  removeMessage,
+  ChangeTitle,
 } = messageSlice.actions;
 
 export default messageSlice.reducer;
