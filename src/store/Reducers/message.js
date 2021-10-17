@@ -71,6 +71,24 @@ const messageSlice = createSlice({
       }
       state.message = temp;
     },
+    AddRightSideDescription: (state, action) => {
+      const temp = [...state.message];
+      for (let i = 0; i < temp.length; i++) {
+        if (temp[i].id === action.payload.id) {
+          temp[i].data.messageDescription = action.payload.description;
+        }
+      }
+      state.message = temp;
+    },
+    DeleteRightSideDescription: (state, action) => {
+      const temp = [...state.message];
+      for (let i = 0; i < temp.length; i++) {
+        if (temp[i].id === action.payload.id) {
+          temp[i].data.messageDescription = undefined;
+        }
+      }
+      state.message = temp;
+    },
   },
 });
 
@@ -81,6 +99,8 @@ export const {
   AddOption,
   AddOptionData,
   AddEdge,
+  AddRightSideDescription,
+  DeleteRightSideDescription,
 } = messageSlice.actions;
 
 export default messageSlice.reducer;

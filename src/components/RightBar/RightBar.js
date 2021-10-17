@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./RightBar.css";
 import Avatar from "@mui/material/Avatar";
 import Labels from "./labels";
 import Description from "./Description";
+import { useSelector } from "react-redux";
 const RightBar = () => {
+  const activeCardId = useSelector(
+    (state) => state.cardState.cardState.activeCardId
+  );
+  const allNodes = useSelector((state) => state.messages.message);
+  const [currentCard, setCurrentCard] = useState(null);
+  const [flag, setFlag] = useState(false);
+  useEffect(() => {
+    for (let i = 0; i < allNodes.length; i++) {
+      if (allNodes[i].id === activeCardId) {
+        if (allNodes[i]?.data?.messageDescription === undefined) {
+          setFlag(false);
+        } else setFlag(true);
+        setCurrentCard(allNodes[i]);
+      }
+    }
+  }, [activeCardId, allNodes]);
+  const messageDescriptionHandler = () => {
+    setFlag(true);
+  };
   return (
     <div className="RightBarMainContainer">
       <div className="RightBarHeader">
@@ -17,10 +37,19 @@ const RightBar = () => {
         </div>
       </div>
       <Labels />
-      <button onClick={() => {}} className="RightBarDescriptionButton">
-        + Add options
-      </button>
-      <Description />
+      {activeCardId &&
+        currentCard?.data["messageDescription"] === undefined &&
+        !flag && (
+          <button
+            onClick={messageDescriptionHandler}
+            className="RightBarDescriptionButton"
+          >
+            + Add Description
+          </button>
+        )}
+      {flag && (
+        <Description activeCardId={activeCardId} currentCard={currentCard} />
+      )}
     </div>
   );
 };
