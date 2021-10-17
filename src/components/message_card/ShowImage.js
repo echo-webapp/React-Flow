@@ -16,7 +16,7 @@ const MessageImage = withTheme(styled("div")`
 `);
 
 const MessageImageRemoveIcon = withTheme(styled("div")`
-  background-color: ${(props) => props.theme.color.purple} !important;
+  background: var(--primary-color) !important;
   transform: translate(-50%, -50%);
   height: 25px;
   width: 25px;
