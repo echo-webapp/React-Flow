@@ -2,17 +2,12 @@ import { withTheme } from "@material-ui/styles";
 import styled from "styled-components";
 import TextareaAutosize from "react-textarea-autosize";
 
-export const connectorStyle = {
-  height: 10,
-  width: 10,
-  top: "50%",
-  borderRadius: "50%",
-};
+export const connectorStyle = {};
 
 export const MessageCardHeader = withTheme(styled("div")`
   width: 259px;
   height: 48px;
-  background: ${(props) => props.theme.color.yellowg};
+  background: var(--white);
   border-radius: 10px 10px 0px 0px;
   display: flex;
   align-items: center;
@@ -52,13 +47,22 @@ export const MessageCardHeaderRight = withTheme(
 export const MessageCardInputBody = withTheme(styled("div")`
   width: 259px;
   min-height: 92px;
-  background: ${(props) => props.theme.color.yellowg};
+  background: var(--white);
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 24px 28px 20px 20px;
+  .connector {
+    height: 15px;
+    width: 15px;
+    top: 50%;
+    border-radius: 50%;
+    background: var(--gradient-green);
+    /* transform: translateX(10%); */
+    border:2px solid var(--white);
+  }
 `);
 
 export const MessageCardInputBodyTextArea = withTheme(styled(TextareaAutosize)`
@@ -81,7 +85,7 @@ export const MessageCardInputBodyTextArea = withTheme(styled(TextareaAutosize)`
 export const AddOptionButton = withTheme(styled("button")`
   width: 259px;
   height: 44px;
-  background: ${(props) => props.theme.color.purple};
+  background: var(--primary-color);
   border-radius: 0px 0px 10px 10px;
   border: none;
   cursor: pointer;
@@ -100,7 +104,7 @@ export const AddImage = withTheme(styled("div")`
       cursor: pointer;
       svg {
         fill: white;
-        stroke:white;
+        stroke: white;
       }
     }
   }
@@ -152,7 +156,7 @@ export const OptionMenulist = withTheme(styled("div")`
 export const MessageCardOptionInputBody = withTheme(styled("div")`
   width: 259px;
   min-height: 28px;
-  background: ${(props) => props.theme.color.yellowg};
+  background: var(--white);
   display: flex;
   flex-direction: column;
   align-items: center;

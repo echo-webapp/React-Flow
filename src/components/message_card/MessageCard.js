@@ -167,16 +167,18 @@ const MessageCard = () => {
           onChange={descriptionHandler}
         />
         <Handle
+          className="connector"
           type="target"
           position="left"
           id={(Math.random() * 1000).toFixed(0)}
-          style={S.connectorStyle}
+          // style={S.connectorStyle}
         />
         <Handle
           type="source"
+          className="connector"
           position="right"
           id={(Math.random() * 1000).toFixed(0)}
-          style={S.connectorStyle}
+          // style={S.connectorStyle}
         />
 
         {state.picCount === 0 && (

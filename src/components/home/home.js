@@ -67,9 +67,9 @@ const Home = () => {
 
   const ReactFlowStyles = {
     height: "100vh",
-    background: isOver
-      ? `linear-gradient(135.31deg, rgba(4, 191, 191, 0.2) 4.68%, rgba(4, 217, 178, 0.2) 100%)`
-      : `linear-gradient(135.31deg, rgba(4, 191, 191, 0.1) 4.68%, rgba(4, 217, 178, 0.1) 100%)`,
+    // background: isOver
+    //   ? `linear-gradient(135.31deg, rgba(4, 191, 191, 0.2) 4.68%, rgba(4, 217, 178, 0.2) 100%)`
+    //   : `linear-gradient(135.31deg, rgba(4, 191, 191, 0.1) 4.68%, rgba(4, 217, 178, 0.1) 100%)`,
     borderRadius: "50px",
     marginRight: 20,
   };
@@ -98,7 +98,7 @@ const Home = () => {
     const new_param = {
       ...params,
       id: rn,
-      animated: "true",
+      // animated: "true",
       type: "custom",
     };
 
@@ -132,7 +132,7 @@ const Home = () => {
         Clear PersistRoot
       </Button>
       <Leftbar />
-      <ReactFlow
+      <S.ReactFlowContainer
         onElementClick={activeMessageCard}
         onElementsRemove={onElementsRemove}
         nodesConnectable={true}
@@ -141,7 +141,8 @@ const Home = () => {
         nodeTypes={nodeTypes}
         ref={drop}
         elements={node_elements}
-        style={ReactFlowStyles}
+        // style={ReactFlowStyles}
+        isOver={isOver}
         onConnect={onConnect}
         onEdgeUpdate={onEdgeUpdate}
         edgeTypes={EdgeType}
@@ -149,7 +150,7 @@ const Home = () => {
         maxZoom={10}
       >
         <NodesDebugger />
-      </ReactFlow>
+      </S.ReactFlowContainer>
     </S.MainContainer>
   );
 };

@@ -24,17 +24,12 @@ export default function CustomEdge({
   });
   const markerEnd = getMarkerEnd(arrowHeadType, markerEndId);
 
-  const edge_style = {
-    stroke: "blue",
-    strokeWidth: 4,
-  };
   console.log(sourceX, sourceY, targetX, targetY);
 
   return (
     <>
       <path
         id={id}
-        style={edge_style}
         className="react-flow__edge-path"
         d={edgePath}
         markerEnd={markerEnd}

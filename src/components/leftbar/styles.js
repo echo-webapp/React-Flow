@@ -10,7 +10,6 @@ export const MainContainer = withTheme(styled("div")`
   justify-content: center;
   width: 100%;
   z-index: 9;
-  
 `);
 
 export const Container = withTheme(styled("div")`
@@ -19,22 +18,22 @@ export const Container = withTheme(styled("div")`
   height: 80px;
   width: 610px;
   margin-left: 20px;
-  background: ${(props) =>
-    `linear-gradient(to right, ${props.theme.color.skygreen}, ${props.theme.color.lightgreen})`};
+  background: var(--white);
+  border: 1px solid var(--primary-color);
 `);
 
 export const ToolBar = withTheme(styled("div")`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* border-bottom: 1px solid ${({ theme }) => theme.color.border}; */
+  border-right: var(--primary-color);
   div {
     div {
       padding: 10px;
     }
     .move-tool {
       border-top-left-radius: 40px;
-      background-color: ${({ theme }) => theme.color.purple};
+      background: var(--gradient-green);
     }
     .hand-tool {
       /* svg {
@@ -47,7 +46,7 @@ export const ToolBar = withTheme(styled("div")`
 `);
 
 export const MessageBar = withTheme(styled("div")`
-  border-right: 1px solid ${({ theme }) => theme.color.border};
+  border-right: 1px solid var(--primary-color);
   padding-right: 32px;
   padding-left: 28px;
   display: flex;
@@ -66,7 +65,7 @@ export const MessageBar = withTheme(styled("div")`
 `);
 
 export const ConnectorBar = withTheme(styled("div")`
-  border-right: 1px solid ${({ theme }) => theme.color.border};
+  border-right: 1px solid var(--primary-color);
   padding-right: 32px;
   padding-left: 28px;
   display: flex;
