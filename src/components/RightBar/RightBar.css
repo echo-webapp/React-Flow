@@ -1,6 +1,6 @@
 .RightBarMainContainer {
   width: 251px;
-  height: 611px;
+  min-height: 611px;
   background: #d1d1d1;
   border: 1px solid #c7c7c7;
   box-sizing: border-box;
@@ -36,7 +36,23 @@
   justify-content: center;
   margin-right: 26px;
 }
+.RightBarDescriptionButton {
+  width: 211px;
+  height: 32px;
+  margin-top: 33px;
+  background: #414141;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
 
+  color: #ffffff;
+}
 /* Label */
 .LabelContainer {
   width: 211px;
@@ -142,24 +158,59 @@
 /* Description */
 .LeftDescriptionContainer {
   width: 211px;
-  height: 149px;
+  min-height: 149px;
   background: #ebebeb;
   border-radius: 10px;
   margin-top: 31px;
+  margin-bottom: 30px;
 }
-.DescriptionHeader {
+.LeftDescriptionContainerHeader {
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .DescriptionHeaderText {
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 15px;
   /* identical to box height */
 
   color: #8d8a8a;
+}
+.LeftDescriptionTextBody {
+  width: 100%;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: #ebebeb;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 0px 25px 17px 16px;
+}
+.LeftDescriptionText {
+  width: 166px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  resize: none;
+  outline: none;
+  min-height: 20px;
+  overflow: hidden;
+  line-height: 18px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: #000000;
+}
+.LeftDescriptionButton {
+  border-top: 1px solid #c8c8c8;
 }

@@ -17,6 +17,9 @@ const RightBar = () => {
         </div>
       </div>
       <Labels />
+      <button onClick={() => {}} className="RightBarDescriptionButton">
+        + Add options
+      </button>
       <Description />
     </div>
   );

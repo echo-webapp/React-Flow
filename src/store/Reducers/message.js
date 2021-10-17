@@ -22,6 +22,7 @@ const messageSlice = createSlice({
         source: action.payload.source,
         target: action.payload.target,
       };
+      if (state.edges === undefined) state.edges = [];
       state.edges.push(new_edge);
       state.message = addEdge(action.payload, state.message);
     },
