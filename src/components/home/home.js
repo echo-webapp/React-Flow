@@ -6,6 +6,7 @@ import ReactFlow, {
   removeElements,
 } from "react-flow-renderer";
 import Leftbar from "../leftbar/leftbar";
+import Rightbar from "../RightBar/RightBar";
 import * as S from "./styles";
 import { useDrop, useDragLayer } from "react-dnd";
 import { Button } from "@mui/material";
@@ -151,6 +152,7 @@ const Home = () => {
       >
         <NodesDebugger />
       </S.ReactFlowContainer>
+      <Rightbar />
     </S.MainContainer>
   );
 };

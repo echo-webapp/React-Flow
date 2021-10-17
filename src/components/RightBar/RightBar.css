@@ -1,10 +1,9 @@
 .RightBarMainContainer {
-  width: 251px;
+  width: 350px;
   min-height: 611px;
-  background: #d1d1d1;
+  background: var(--secondary-color);
   border: 1px solid #c7c7c7;
   box-sizing: border-box;
-  border-radius: 40px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -40,7 +39,7 @@
   width: 211px;
   height: 32px;
   margin-top: 33px;
-  background: #414141;
+  background: var(--primary-color);
   border-radius: 10px;
   border: none;
   cursor: pointer;
@@ -49,22 +48,19 @@
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
-  /* identical to box height */
-
   color: #ffffff;
 }
-/* Label */
 .LabelContainer {
   width: 211px;
   height: 172px;
-  background: #ebebeb;
+  background: var(--white);
   border-radius: 10px;
   margin-top: 28px;
 }
 .LabelContainerHeader {
   width: 211px;
   height: 48px;
-  background: #ebebeb;
+  background: var(--white);
   border-radius: 10px 10px 0px 0px;
   font-family: Poppins;
   font-style: normal;
@@ -159,7 +155,7 @@
 .LeftDescriptionContainer {
   width: 211px;
   min-height: 149px;
-  background: #ebebeb;
+  background: var(--white);
   border-radius: 10px;
   margin-top: 31px;
   margin-bottom: 30px;
@@ -189,14 +185,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background: #ebebeb;
+  background: var(--white);
   border-radius: 10px;
   box-sizing: border-box;
   padding: 0px 25px 17px 16px;
 }
 .LeftDescriptionText {
   width: 166px;
-  background: #ffffff;
+  background: var(--white);
   border-radius: 10px;
   border: none;
   padding: 10px;

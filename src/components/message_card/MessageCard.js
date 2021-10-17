@@ -73,7 +73,7 @@ const MessageCard = () => {
     <div>
       <S.MessageCardHeader>
         {/* <S.MessageCardStatus> */}
-        <S.MessageCardStatusTag>Done</S.MessageCardStatusTag>
+        <S.MessageCardStatusTag color="secondary"></S.MessageCardStatusTag>
         {/* </S.MessageCardStatus> */}
         <S.MessageCardHeaderLeft>
           <S.MessageCardHeaderLeftIcon>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import TextareaAutosize from "react-textarea-autosize";
 
 export const MessageCardStatus = styled.div`
-  height: 20px;
+  height: 15px;
   width: 100%;
   background-color: var(--white);
   display: flex;
@@ -16,9 +16,9 @@ export const MessageCardStatusTag = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  /* width: 45px; */
+  width: 45px;
   padding: 0px 10px;
-  height: 20px;
+  height: 10px;
   text-align: center;
   border-top-right-radius: 10px;
   background: var(--gradient-yellow);
@@ -26,7 +26,7 @@ export const MessageCardStatusTag = styled.div`
 
 export const MessageCardHeader = styled.div`
   width: 259px;
-  height: 50px;
+  height: 40px;
   background: var(--white);
   border-radius: 10px 10px 0px 0px;
   display: flex;
