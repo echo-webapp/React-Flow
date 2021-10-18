@@ -15,7 +15,7 @@ import MessageCard from "../message_card/MessageCard";
 import { useDispatch, useSelector } from "react-redux";
 import { AddMessage } from "./../../store/Reducers/message";
 import { SetActiveCard } from "../../store/Reducers/cardState";
-import { AddEdge } from "../../store/Reducers/message";
+import { AddEdge, ChangeCardPosition } from "../../store/Reducers/message";
 import CustomEdge from "./customEdge";
 import { useTheme } from "@material-ui/styles";
 
@@ -90,6 +90,14 @@ const Home = () => {
     // setnode_elements((els) => addEdge(new_param, els));
   });
 
+  const onNodeDrag = useCallback((event, node) => {
+    // console.log(node.id);
+    // console.log(node.position);
+    let data = {};
+    data.id = node.id;
+    data.position = node.position;
+    dispatch(ChangeCardPosition(data));
+  });
   const onEdgeUpdate = useCallback((oldEdge, newConnection) => {
     // setnode_elements((els) => updateEdge(oldEdge, newConnection, els));
   });
@@ -118,6 +126,7 @@ const Home = () => {
       <S.ReactFlowContainer
         onElementClick={activeMessageCard}
         onElementsRemove={onElementsRemove}
+        onNodeDrag={onNodeDrag}
         nodesConnectable={true}
         nodesDraggable={true}
         connectionLineStyle={{ strokeWidth: 3 }}

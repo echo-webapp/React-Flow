@@ -16,6 +16,15 @@ const messageSlice = createSlice({
       console.log(current(state.message));
     },
 
+    ChangeCardPosition: (state, action) => {
+      const arr = [...state.message];
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].id === action.payload.id) {
+          arr[i].position = action.payload.position;
+        }
+      }
+      state.message = arr;
+    },
     removeMessage: (state, action) => {
       // console.log("id", action.payload);
       const filtered_nodes = [];
@@ -136,10 +145,16 @@ const messageSlice = createSlice({
       }
     },
     SetColorTag: (state, action) => {
-      console.log(action.payload);
       for (let i = 0; i < state.message.length; i++) {
         if (state.message[i].id == action.payload.id) {
           state.message[i].tag = action.payload.tag;
+        }
+      }
+    },
+    DeleteColorTag: (state, action) => {
+      for (let i = 0; i < state.message.length; i++) {
+        if (state.message[i].id == action.payload.id) {
+          state.message[i].tag = undefined;
         }
       }
     },
@@ -159,6 +174,8 @@ export const {
   removeMessage,
   ChangeTitle,
   SetColorTag,
+  DeleteColorTag,
+  ChangeCardPosition,
 } = messageSlice.actions;
 
 export default messageSlice.reducer;

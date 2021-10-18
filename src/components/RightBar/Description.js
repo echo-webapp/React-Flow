@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import {
   AddRightSideDescription,
   DeleteRightSideDescription,
+  DeleteColorTag,
 } from "../../store/Reducers/message";
 const Description = (props) => {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ const Description = (props) => {
     let data = {};
     data.id = props.activeCardId;
     dispatch(DeleteRightSideDescription(data));
+    if (props.currentCard.tag != undefined) {
+      dispatch(DeleteColorTag(data));
+    }
   };
   const descriptionHandler = (e) => {
     setDescriptionText(e.target.value);
