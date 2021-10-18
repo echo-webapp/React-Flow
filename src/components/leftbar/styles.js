@@ -62,6 +62,9 @@ export const MessageBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ConnectorBar = styled.div`
@@ -71,6 +74,9 @@ export const ConnectorBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Templates = styled.div`

@@ -1,17 +1,9 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import MessageIcon from "../../Assets/message_card/MessageIcon";
 import AddImageIcon from "../../Assets/message_card/AddImageIcon";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { makeStyles } from "@material-ui/core";
 import ShowImage from "./ShowImage";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import CopyLink from "../../Assets/message_card/CopyLinkIcon";
 import DeleteIcons from "../../Assets/message_card/DeleteIcon";
-import DuplicateIcons from "../../Assets/message_card/DuplicateIcon";
-import RenameIcons from "../../Assets/message_card/RenameIcon";
 import MessageOption from "./MessageOption";
 import { useSelector } from "react-redux";
 import {
@@ -23,7 +15,7 @@ import {
 } from "../../store/Reducers/message";
 import * as S from "./styles";
 import { useDispatch } from "react-redux";
-import { Handle, removeElements } from "react-flow-renderer";
+import { Handle } from "react-flow-renderer";
 
 const useStyles = makeStyles({
   menu: {
@@ -120,13 +112,13 @@ const MessageCard = (props) => {
           </S.MessageCardHeaderLeftIcon>
           <S.MessageCardHeaderLeftText onChange={changeTitle} value={title} />
         </S.MessageCardHeaderLeft>
-        <S.MessageCardHeaderRight>
-          <S.DeleteIconDiv
-            onClick={() => {
-              removeNode();
-              handleClose();
-            }}
-          >
+        <S.MessageCardHeaderRight
+          onClick={() => {
+            removeNode();
+            handleClose();
+          }}
+        >
+          <S.DeleteIconDiv>
             <DeleteIcons height="20px" width="20px" />
           </S.DeleteIconDiv>
         </S.MessageCardHeaderRight>
