@@ -24,6 +24,11 @@ const Description = (props) => {
     } else {
       setDescriptionText(props.currentCard?.data?.messageDescription);
     }
+
+    if (props.currentCard.tag != undefined) {
+      setSelectedValue(props.currentCard.tag);
+      setIconFlag(false);
+    }
   }, [props.currentCard]);
 
   const deleteButtonHandler = () => {

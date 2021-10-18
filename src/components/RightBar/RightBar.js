@@ -38,7 +38,7 @@ const RightBar = () => {
       </div>
       <Labels />
       {activeCardId &&
-        currentCard?.data["messageDescription"] === undefined &&
+        currentCard?.data?.messageDescription === undefined &&
         !flag && (
           <button
             onClick={messageDescriptionHandler}

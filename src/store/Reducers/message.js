@@ -135,6 +135,14 @@ const messageSlice = createSlice({
         }
       }
     },
+    SetColorTag: (state, action) => {
+      console.log(action.payload);
+      for (let i = 0; i < state.message.length; i++) {
+        if (state.message[i].id == action.payload.id) {
+          state.message[i].tag = action.payload.tag;
+        }
+      }
+    },
   },
 });
 
@@ -150,6 +158,7 @@ export const {
   DeleteRightSideDescription,
   removeMessage,
   ChangeTitle,
+  SetColorTag,
 } = messageSlice.actions;
 
 export default messageSlice.reducer;

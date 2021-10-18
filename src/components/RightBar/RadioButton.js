@@ -1,8 +1,35 @@
 import * as React from "react";
 import Radio from "@mui/material/Radio";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { SetColorTag } from "../../store/Reducers/message";
+const colorList = ["#E28383", "#D9D572", "#8699DD", "#8ACF7F", "#C48EBE"];
 const RadioButton = (props) => {
+  const activeCardId = useSelector(
+    (state) => state.cardState.cardState.activeCardId
+  );
+  const dispatch = useDispatch();
   const handleChange = (event) => {
+    console.log(activeCardId);
+    let data = {};
+    data.id = activeCardId;
+    if (event.target.value === "a") {
+      data.tag = colorList[0];
+    }
+    if (event.target.value === "b") {
+      data.tag = colorList[1];
+    }
+    if (event.target.value === "c") {
+      data.tag = colorList[2];
+    }
+    if (event.target.value === "d") {
+      data.tag = colorList[3];
+    }
+    if (event.target.value === "e") {
+      data.tag = colorList[4];
+    }
     props.setSelectedValue(event.target.value);
+    dispatch(SetColorTag(data));
   };
 
   const controlProps = (item) => ({

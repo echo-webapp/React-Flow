@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import TextareaAutosize from "react-textarea-autosize";
-
 export const Container = styled.div`
   cursor: default;
 `;
