@@ -135,6 +135,7 @@
   display: flex;
 }
 .LabelListItem2 {
+  width: 140px;
   outline: none;
   border: none;
   background-image: none;

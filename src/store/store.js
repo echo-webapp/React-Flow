@@ -1,5 +1,6 @@
 import messageReducer from "./Reducers/message";
 import cardStateReducer from "./Reducers/cardState";
+import labelStateReducer from "./Reducers/labelState";
 import { configureStore, combineReducers, compose } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
@@ -12,6 +13,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   messages: messageReducer,
   cardState: cardStateReducer,
+  labelState: labelStateReducer,
 });
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import EditIcon from "../../Assets/RightBar/EditIcon";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { SetLabelList } from "./../../store/Reducers/labelState";
 const Labels = () => {
-  const [labelList, setLabelList] = useState({
-    label1: "Urgent",
-    label2: "Pending",
-    label3: "Inprogress",
-    label4: "Done",
-    label5: "Approved",
-  });
+  const dispatch = useDispatch();
+  const labelList = useSelector((state) => state.labelState);
+  console.log(labelList);
   const [labelFlag, setlabelFlag] = useState(true);
   return (
     <div className="LabelContainer">
@@ -31,7 +30,7 @@ const Labels = () => {
               name="label1"
               value={labelList.label1}
               onChange={(e) =>
-                setLabelList({ ...labelList, label1: e.target.value })
+                dispatch(SetLabelList({ label1: e.target.value }))
               }
               onBlur={() => {
                 setlabelFlag(true);
@@ -49,7 +48,7 @@ const Labels = () => {
               name="label1"
               value={labelList.label2}
               onChange={(e) =>
-                setLabelList({ ...labelList, label2: e.target.value })
+                dispatch(SetLabelList({ label2: e.target.value }))
               }
               onBlur={() => {
                 setlabelFlag(true);
@@ -68,7 +67,7 @@ const Labels = () => {
               name="label1"
               value={labelList.label3}
               onChange={(e) =>
-                setLabelList({ ...labelList, label3: e.target.value })
+                dispatch(SetLabelList({ label3: e.target.value }))
               }
               onBlur={() => {
                 setlabelFlag(true);
@@ -86,7 +85,7 @@ const Labels = () => {
               name="label1"
               value={labelList.label4}
               onChange={(e) =>
-                setLabelList({ ...labelList, label4: e.target.value })
+                dispatch(SetLabelList({ label4: e.target.value }))
               }
               onBlur={() => {
                 setlabelFlag(true);
@@ -105,7 +104,7 @@ const Labels = () => {
               name="label1"
               value={labelList.label5}
               onChange={(e) =>
-                setLabelList({ ...labelList, label5: e.target.value })
+                dispatch(SetLabelList({ label5: e.target.value }))
               }
               onBlur={() => {
                 setlabelFlag(true);
