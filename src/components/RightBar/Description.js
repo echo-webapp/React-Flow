@@ -26,7 +26,11 @@ const Description = (props) => {
     }
 
     if (props.currentCard.tag != undefined) {
-      setSelectedValue(props.currentCard.tag);
+      if (props.currentCard.tag === "#E28383") setSelectedValue("a");
+      if (props.currentCard.tag === "#D9D572") setSelectedValue("b");
+      if (props.currentCard.tag === "#8699DD") setSelectedValue("c");
+      if (props.currentCard.tag === "#8ACF7F") setSelectedValue("d");
+      if (props.currentCard.tag === "#C48EBE") setSelectedValue("e");
       setIconFlag(false);
     }
   }, [props.currentCard]);

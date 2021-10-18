@@ -29,7 +29,7 @@ export const MessageCardStatusTag = styled.div`
 
 export const MessageCardHeader = styled.div`
   width: 259px;
-  height: 40px;
+  height: 48px;
   background: var(--white);
   border-radius: 10px 10px 0px 0px;
   display: flex;
