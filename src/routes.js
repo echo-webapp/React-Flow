@@ -6,8 +6,8 @@ import Home from "./components/home/home.js";
 const Router = () => {
   return (
     <Fragment>
-      <Route exact path="/" component={RightBar} />
-      <Route exact path="/home" component={Home} />
+      <Route exact path="/" component={Home} />
+      {/* <Route exact path="/home" component={Home} /> */}
     </Fragment>
   );
 };

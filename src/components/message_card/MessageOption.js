@@ -27,30 +27,12 @@ const MessageOption = (props) => {
     dispatch(AddOptionData(data));
   };
 
-  useEffect(() => {
-    console.log(border);
-  }, [border]);
-
   const deleteoption = () => {
-    console.log("clicked");
     const data = {};
     data.index = props.index;
     data.id = activeCardId;
     dispatch(DeleteOption(data));
   };
-
-  // const ClickHandler = () => {
-  //   const border_flags = [...border];
-  //   for (let i = 0; i < border_flags.length; i++) {
-  //     if (i == props.index) {
-  //       border_flags[i] = true;
-  //     } else {
-  //       border_flags[i] = false;
-  //     }
-  //   }
-  //   console.log(border_flags);
-  //   setborder(border_flags);
-  // };
 
   return (
     <S.MessageCardOptionInputBody

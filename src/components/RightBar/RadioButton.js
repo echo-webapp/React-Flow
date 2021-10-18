@@ -10,7 +10,6 @@ const RadioButton = (props) => {
   );
   const dispatch = useDispatch();
   const handleChange = (event) => {
-    console.log(activeCardId);
     let data = {};
     data.id = activeCardId;
     if (event.target.value === "a") {

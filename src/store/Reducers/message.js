@@ -13,7 +13,6 @@ const messageSlice = createSlice({
   reducers: {
     AddMessage: (state, action) => {
       state.message.push(action.payload);
-      console.log(current(state.message));
     },
 
     ChangeCardPosition: (state, action) => {
@@ -26,7 +25,6 @@ const messageSlice = createSlice({
       state.message = arr;
     },
     removeMessage: (state, action) => {
-      // console.log("id", action.payload);
       const filtered_nodes = [];
 
       let node_index = null;
@@ -48,19 +46,14 @@ const messageSlice = createSlice({
           edge_index.push(i);
         }
       }
-
-      // console.log("edge", edge_index);
       if (edge_index.length > 0) {
         for (let i = 0; i < edge_index.length; i++) {
           state.message.splice(edge_index[i], 1);
         }
       }
-
-      console.log("Final_Nodes", current(state.message));
     },
 
     AddEdge: (state, action) => {
-      // console.log(action.payload);
       state.message = addEdge(action.payload, state.message);
     },
 
@@ -81,7 +74,6 @@ const messageSlice = createSlice({
       let data = {};
       data.picCount = action.payload[0].picCount;
       data.pics = sar;
-      console.log(data);
       for (let i = 0; i < temp.length; i++) {
         if (temp[i].id === action.payload[1]) {
           temp[i].data.picture = data;
