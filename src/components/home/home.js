@@ -65,6 +65,7 @@ const Home = () => {
         description: "",
         options: [],
         title: "Message",
+        image: null,
       },
       position: { x: offset.x - 100, y: offset.y - 90 },
     };

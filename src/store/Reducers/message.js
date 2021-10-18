@@ -69,17 +69,13 @@ const messageSlice = createSlice({
     },
 
     AddPicture: (state, action) => {
-      const temp = [...state.message];
-      const sar = Object.assign(action.payload[0].pics[0]);
-      let data = {};
-      data.picCount = action.payload[0].picCount;
-      data.pics = sar;
-      for (let i = 0; i < temp.length; i++) {
-        if (temp[i].id === action.payload[1]) {
-          temp[i].data.picture = data;
+      console.log(action.payload);
+      const image = action.payload.image;
+      for (let i = 0; i < state.message.length; i++) {
+        if (state.message[i].id === action.payload.id) {
+          state.message[i].data.image = image;
         }
       }
-      state.message = temp;
     },
 
     AddOption: (state, action) => {

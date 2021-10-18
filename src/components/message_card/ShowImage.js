@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
-import IconButton from "@material-ui/core/IconButton";
+import React, { useMemo, useState, useEffect } from "react";
 import styled from "styled-components";
-import { withTheme } from "@material-ui/styles";
+import { useSelector } from "react-redux";
 
-const MessageImage = withTheme(styled("div")`
+const MessageImage = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -13,11 +13,14 @@ const MessageImage = withTheme(styled("div")`
   background: var(--white);
   border-bottom: 1px solid #8f8c8c;
   cursor: pointer;
-`);
+`;
 
-const MessageImageRemoveIcon = withTheme(styled("div")`
+const MessageImageRemoveIcon = styled.div`
   background: var(--primary-color) !important;
-  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-65%, 10%);
   height: 25px;
   width: 25px;
   display: flex;
@@ -25,7 +28,7 @@ const MessageImageRemoveIcon = withTheme(styled("div")`
   align-items: center;
   border-radius: 50%;
   padding: 5px;
-`);
+`;
 
 const ShowImage = (props) => {
   return (
@@ -36,7 +39,7 @@ const ShowImage = (props) => {
               <div
                 key={index * 100}
                 style={{
-                  backgroundImage: `url("${URL.createObjectURL(pic)}")`,
+                  backgroundImage: `url("${props.image_url}")`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
@@ -49,10 +52,12 @@ const ShowImage = (props) => {
                   aria-controls="removes pic"
                   aria-haspopup="false"
                   onClick={() => {
-                    props.setState({
-                      ...props.state,
-                      picCount: 0,
-                      pics: undefined,
+                    props.setState((prev) => {
+                      return {
+                        ...prev,
+                        picCount: 0,
+                        pics: undefined,
+                      };
                     });
                   }}
                 >

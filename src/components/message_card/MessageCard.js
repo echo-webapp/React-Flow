@@ -30,6 +30,8 @@ const MessageCard = (props) => {
   ]);
   const [desc, setdesc] = useState("");
   const image_element = useRef(null);
+  const [image, setimage] = useState(null);
+  const [image_url, setimage_url] = useState(null);
   const dispatch = useDispatch();
   const [state, setState] = useState({
     picCount: 0,
@@ -39,9 +41,27 @@ const MessageCard = (props) => {
   const [title, settitle] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [tag_status, settag_status] = useState(null);
-  const open = Boolean(anchorEl);
 
-  const classes = useStyles();
+  useEffect(() => {
+    message.map((message) => {
+      if (message.id == props.id) {
+        setimage(message.data.image);
+      }
+      return null;
+    });
+  }, [message]);
+
+  useEffect(() => {
+    console.log(image?.name);
+    if (image?.name) {
+      const image_url = URL.createObjectURL(image);
+      setimage_url(image_url);
+    }
+  }, [image]);
+
+  useEffect(() => {
+    console.log("image_url", image_url);
+  }, [image_url]);
 
   useEffect(() => {
     message.map((message) => {
@@ -79,10 +99,6 @@ const MessageCard = (props) => {
     });
   }, [message]);
 
-  const handleClick = useCallback((event) => {
-    setAnchorEl(event.currentTarget);
-  });
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -101,6 +117,28 @@ const MessageCard = (props) => {
   const changeTitle = (e) => {
     dispatch(ChangeTitle({ id: props.id, value: e.target.value }));
   };
+
+  const UploadImage = useCallback((e) => {
+    let file = e.target.files[0];
+    if (!file) return false;
+    let pics = Array.isArray(state.pics) ? state.pics : [];
+    if (!e.target.files[0]) return false;
+    pics.push(e.target.files[0]);
+    setState((prev) => {
+      return {
+        ...prev,
+        picCount: state.picCount + 1,
+        pics: pics,
+      };
+    });
+    const image_url = URL.createObjectURL(pics[0]);
+    const data = {
+      image: pics[0],
+      image_url: image_url,
+      id: activeCardId,
+    };
+    dispatch(AddPicture(data));
+  });
 
   return (
     <S.Container>
@@ -127,26 +165,13 @@ const MessageCard = (props) => {
         type="file"
         accept="image/*"
         ref={image_element}
-        onChange={(e) => {
-          let file = e.target.files[0];
-          if (!file) return false;
-          let pics = Array.isArray(state.pics) ? state.pics : [];
-          if (!e.target.files[0]) return false;
-          pics.push(e.target.files[0]);
-          setState({
-            ...state,
-            picCount: state.picCount + 1,
-            pics: pics,
-          });
-          let data = [];
-          data.push({ ...state, picCount: state.picCount + 1, pics: pics });
-          data.push(activeCardId);
-          dispatch(AddPicture(data));
-        }}
+        onChange={UploadImage}
         disabled={state.picCount >= 1 ? true : false}
         hidden
       />
-      {state.picCount >= 1 && <ShowImage state={state} setState={setState} />}
+      {image?.name ? (
+        <ShowImage image_url={image_url} state={state} setState={setState} />
+      ) : null}
       <S.MessageCardInputBody>
         <S.MessageCardInputBodyTextArea
           placeholder="Type something..."
