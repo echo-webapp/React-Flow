@@ -7,7 +7,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename="React-Flow">
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <App />
