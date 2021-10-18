@@ -33,7 +33,7 @@ const Sidebar = () => {
   }));
 
   return (
-    <S.MainContainer onClick={() => console.log("clickdes")}>
+    <S.MainContainer onClick={() => {}}>
       <S.Container>
         <S.ToolBar>
           <div>

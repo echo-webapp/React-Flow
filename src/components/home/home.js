@@ -22,9 +22,6 @@ import { useTheme } from "@material-ui/styles";
 const NodesDebugger = () => {
   const nodes = useStoreState((state) => state.nodes);
   const edges = useStoreState((state) => state.edges);
-  // console.log("nodes", nodes);
-  // console.log("edges", edges);
-
   return null;
 };
 
@@ -91,8 +88,6 @@ const Home = () => {
   });
 
   const onNodeDrag = useCallback((event, node) => {
-    // console.log(node.id);
-    // console.log(node.position);
     let data = {};
     data.id = node.id;
     data.position = node.position;
@@ -108,10 +103,7 @@ const Home = () => {
 
   const EdgeType = { customEdge: CustomEdge };
 
-  const onEdgeContextMenu = (event, edge) => {
-    console.log("rightclick");
-    console.log(event, edge);
-  };
+  const onEdgeContextMenu = (event, edge) => {};
 
   return (
     <S.MainContainer>

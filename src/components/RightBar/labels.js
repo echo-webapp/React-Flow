@@ -22,7 +22,7 @@ const Labels = () => {
       d = 0,
       e = 0;
     for (let i = 0; i < allNodes.length; i++) {
-      if (allNodes[i].tag != undefined) {
+      if (allNodes[i].tag !== undefined) {
         if (allNodes[i].tag === "#E28383") a = a + 1;
         if (allNodes[i].tag === "#D9D572") b = b + 1;
         if (allNodes[i].tag === "#8699DD") c = c + 1;

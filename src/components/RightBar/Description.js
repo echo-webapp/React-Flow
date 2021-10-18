@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import RadioButton from "./RadioButton";
 import DeleteIcon from "../../Assets/RightBar/DeleteIcon";
@@ -26,7 +26,7 @@ const Description = (props) => {
       setDescriptionText(props.currentCard?.data?.messageDescription);
     }
 
-    if (props.currentCard.tag != undefined) {
+    if (props.currentCard.tag !== undefined) {
       if (props.currentCard.tag === "#E28383") setSelectedValue("a");
       if (props.currentCard.tag === "#D9D572") setSelectedValue("b");
       if (props.currentCard.tag === "#8699DD") setSelectedValue("c");
@@ -40,7 +40,7 @@ const Description = (props) => {
     let data = {};
     data.id = props.activeCardId;
     dispatch(DeleteRightSideDescription(data));
-    if (props.currentCard.tag != undefined) {
+    if (props.currentCard.tag !== undefined) {
       dispatch(DeleteColorTag(data));
     }
   };
