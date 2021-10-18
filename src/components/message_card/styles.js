@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import TextareaAutosize from "react-textarea-autosize";
+import { Button } from "@material-ui/core";
 export const Container = styled.div`
   cursor: default;
 `;
@@ -24,7 +25,7 @@ export const MessageCardStatusTag = styled.div`
   height: 10px;
   text-align: center;
   border-top-right-radius: 10px;
-  background: var(--gradient-yellow);
+  background-color: ${(props) => (props.color != null ? props.color : "none")};
 `;
 
 export const MessageCardHeader = styled.div`
@@ -66,8 +67,16 @@ export const MessageCardHeaderLeftIcon = styled.div`
 
 export const MessageCardHeaderRight = styled.div`
   margin-right: 10px;
-  transform: translateY(7%);
+  transform: translateX(20%);
+  border-radius: 50% !important;
+  padding: 10px;
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
 `;
+
+export const DeleteIconDiv = styled.div``;
 
 export const MessageCardInputBody = styled.div`
   width: 259px;
@@ -185,14 +194,13 @@ export const MessageCardOptionInputBody = styled.div`
   justify-content: center;
   padding: 8px 28px 8px 20px;
   border-bottom: ${(props) => {
-    console.log("border", props.border, "index", props.index);
     return props.border[props.index] == true &&
       !(props.index == props.total_option - 1)
       ? "2px solid var(--primary-color)"
       : "none";
   }};
   border-top: ${(props) =>
-    props.border[props.index] ? "2px solid var(--primary-color)" : "none"};
+    props.border[props.index] == 0 ? "2px solid var(--primary-color)" : "none"};
 `;
 
 export const MessageCardOptionInputBodyTextArea = styled(TextareaAutosize)`
@@ -215,11 +223,12 @@ export const CrossButton = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 200;
   &:hover {
     cursor: pointer;
+    box-shadow: 0px 1px 8px rgba(103, 39, 242, 0.3);
   }
 `;

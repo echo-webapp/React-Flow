@@ -46,9 +46,19 @@ const MessageCard = (props) => {
   const [optionsList, setoptionsList] = useState([]);
   const [title, settitle] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
+  const [tag_status, settag_status] = useState(null);
   const open = Boolean(anchorEl);
 
   const classes = useStyles();
+
+  useEffect(() => {
+    message.map((message) => {
+      if (message.id == props.id) {
+        settag_status(message.tag);
+      }
+      return null;
+    });
+  }, [message]);
 
   useEffect(() => {
     message.map((message) => {
@@ -103,7 +113,7 @@ const MessageCard = (props) => {
   return (
     <S.Container>
       <S.MessageCardHeader>
-        <S.MessageCardStatusTag color="secondary"></S.MessageCardStatusTag>
+        <S.MessageCardStatusTag color={tag_status}></S.MessageCardStatusTag>
         <S.MessageCardHeaderLeft>
           <S.MessageCardHeaderLeftIcon>
             <MessageIcon height="25px" width="25px" />
@@ -111,56 +121,14 @@ const MessageCard = (props) => {
           <S.MessageCardHeaderLeftText onChange={changeTitle} value={title} />
         </S.MessageCardHeaderLeft>
         <S.MessageCardHeaderRight>
-          <IconButton
-            aria-label="more"
-            id="long-button"
-            aria-controls="long-menu"
-            aria-expanded={open ? "true" : undefined}
-            aria-haspopup="true"
-            onClick={handleClick}
-          >
-            <MoreHorizIcon />
-          </IconButton>
-          <Menu
-            id="demo-positioned-menu"
-            aria-labelledby="demo-positioned-button"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            className={classes.menu}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
+          <S.DeleteIconDiv
+            onClick={() => {
+              removeNode();
+              handleClose();
             }}
           >
-            <MenuItem
-              onClick={() => {
-                removeNode();
-                handleClose();
-              }}
-            >
-              <ListItemIcon>
-                <DeleteIcons height="20px" width="20px" />
-              </ListItemIcon>
-              <div>Delete</div>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <DuplicateIcons height="20px" width="20px" />
-              </ListItemIcon>
-              <div>Duplicate</div>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <ListItemIcon>
-                <RenameIcons height="20px" width="20px" />
-              </ListItemIcon>
-              <div>Rename</div>
-            </MenuItem>
-          </Menu>
+            <DeleteIcons height="20px" width="20px" />
+          </S.DeleteIconDiv>
         </S.MessageCardHeaderRight>
       </S.MessageCardHeader>
       <input

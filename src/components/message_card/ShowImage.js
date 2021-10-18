@@ -10,7 +10,7 @@ const MessageImage = withTheme(styled("div")`
   justify-content: center;
   width: 259px;
   height: 150px;
-  background: var(--secondary-color);
+  background: var(--white);
   border-bottom: 1px solid #8f8c8c;
   cursor: pointer;
 `);

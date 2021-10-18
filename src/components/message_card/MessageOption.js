@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AddOptionData, DeleteOption } from "../../store/Reducers/message";
 import * as S from "./styles";
-import CrossButtonIcon from "../../Assets/message_card/crossbutton.svg";
+import CrossButtonIcon from "../../Assets/message_card/crossbutton1.svg";
 
 const MessageOption = (props) => {
   const dispatch = useDispatch();
@@ -39,25 +39,25 @@ const MessageOption = (props) => {
     dispatch(DeleteOption(data));
   };
 
-  const ClickHandler = () => {
-    const border_flags = [...border];
-    for (let i = 0; i < border_flags.length; i++) {
-      if (i == props.index) {
-        border_flags[i] = true;
-      } else {
-        border_flags[i] = false;
-      }
-    }
-    console.log(border_flags);
-    setborder(border_flags);
-  };
+  // const ClickHandler = () => {
+  //   const border_flags = [...border];
+  //   for (let i = 0; i < border_flags.length; i++) {
+  //     if (i == props.index) {
+  //       border_flags[i] = true;
+  //     } else {
+  //       border_flags[i] = false;
+  //     }
+  //   }
+  //   console.log(border_flags);
+  //   setborder(border_flags);
+  // };
 
   return (
     <S.MessageCardOptionInputBody
       border={border}
       index={props.index}
       total_option={props.optionsList.length}
-      onClick={ClickHandler}
+      // onClick={ClickHandler}
     >
       <S.MessageCardOptionInputBodyTextArea
         placeholder="Type Option..."
