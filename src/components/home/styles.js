@@ -5,7 +5,7 @@ import ReactFlow from "react-flow-renderer";
 export const MainContainer = styled.div`
   position: relative;
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 export const ReactFlowContainer = styled(ReactFlow)`

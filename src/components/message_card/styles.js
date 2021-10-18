@@ -3,6 +3,13 @@ import TextareaAutosize from "react-textarea-autosize";
 import { Button } from "@material-ui/core";
 export const Container = styled.div`
   cursor: default;
+  border-radius: 12px;
+  border: ${(props) =>
+    props.activeId == props.id ? "2px solid var(--primary-color)" : "none"};
+  box-shadow: ${(props) =>
+    props.activeId == props.id
+      ? "4px 8px 8px rgba(103, 39, 242, 0.3)"
+      : "none"};
 `;
 
 export const MessageCardStatus = styled.div`
@@ -44,7 +51,7 @@ export const MessageCardHeaderLeft = styled.div`
   margin-bottom: 7px;
 `;
 
-export const MessageCardHeaderLeftText = styled(TextareaAutosize)`
+export const MessageCardHeaderTitle = styled(TextareaAutosize)`
   position: absolute;
   resize: none;
   outline: none;
@@ -59,6 +66,10 @@ export const MessageCardHeaderLeftText = styled(TextareaAutosize)`
   font-size: 1em;
   line-height: 15px;
   margin-top: 4px;
+  cursor: default;
+  &:focus{
+    cursor: text;
+  }
 `;
 
 export const MessageCardHeaderLeftIcon = styled.div`

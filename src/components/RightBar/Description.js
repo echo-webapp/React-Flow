@@ -68,6 +68,7 @@ const Description = (props) => {
       </div>
       <div className="LeftDescriptionTextBody">
         <TextareaAutosize
+          maxLength="500"
           className="LeftDescriptionText"
           placeholder="Create the description ..."
           disabled={iconFlag}

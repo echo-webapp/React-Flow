@@ -1,8 +1,8 @@
 .RightBarMainContainer {
-  width: 350px;
+  width: 500px;
   min-height: 611px;
   background: var(--secondary-color);
-  border-left: 1px solid #6727f2;
+  border-left: 2px solid #6727f2;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@
   font-family: Poppins;
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 21px;
   color: #666666;
   margin-left: 35px;
@@ -35,8 +35,8 @@
   margin-right: 30px;
 }
 .RightBarDescriptionButton {
-  width: 211px;
-  height: 32px;
+  width: 264px;
+  height: 48px;
   margin-top: 33px;
   background: var(--primary-color);
   border-radius: 10px;
@@ -45,26 +45,26 @@
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 1em;
   line-height: 15px;
   color: #ffffff;
 }
 .LabelContainer {
-  width: 211px;
-  height: 172px;
+  width: 264px;
+  height: 216px;
   background: var(--white);
   border-radius: 10px;
   margin-top: 28px;
 }
 .LabelContainerHeader {
-  width: 211px;
+  width: 264px;
   height: 48px;
   background: var(--white);
   border-radius: 10px 10px 0px 0px;
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 15px;
   color: #868686;
   display: flex;
@@ -146,7 +146,7 @@
   font-family: Poppins;
   font-style: normal;
   font-weight: 500;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 15px;
 
   color: #666666;
@@ -155,10 +155,8 @@
   font-family: Poppins;
   font-style: normal;
   font-weight: 500;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 15px;
-  /* identical to box height */
-
   color: #666666;
 }
 input:not([disabled]):hover {
@@ -166,7 +164,7 @@ input:not([disabled]):hover {
 }
 /* Description */
 .LeftDescriptionContainer {
-  width: 211px;
+  width: 264px;
   min-height: 149px;
   background: var(--white);
   border-radius: 10px;
@@ -185,30 +183,27 @@ input:not([disabled]):hover {
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 15px;
   /* identical to box height */
 
   color: #8d8a8a;
 }
 .LeftDescriptionTextBody {
-  width: 100%;
   min-height: 90px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   background: var(--white);
   border-radius: 10px;
   box-sizing: border-box;
-  padding: 0px 25px 17px 16px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .LeftDescriptionText {
-  width: 166px;
   background: var(--white);
   border-radius: 10px;
   border: none;
-  padding: 10px;
   resize: none;
   outline: none;
   min-height: 20px;
@@ -222,6 +217,9 @@ input:not([disabled]):hover {
 }
 .LeftDescriptionButton {
   border-top: 1px solid #6727f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .DescriptionHeaderIcon {
   cursor: pointer;

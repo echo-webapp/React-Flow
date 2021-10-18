@@ -78,6 +78,15 @@ const messageSlice = createSlice({
       }
     },
 
+    removePicture: (state, action) => {
+      console.log('here')
+      for (let i = 0; i < state.message.length; i++) {
+        if (state.message[i].id === action.payload) {
+          state.message[i].data.image = null;
+        }
+      }
+    },
+
     AddOption: (state, action) => {
       const temp = [...state.message];
       for (let i = 0; i < temp.length; i++) {
@@ -164,6 +173,7 @@ export const {
   SetColorTag,
   DeleteColorTag,
   ChangeCardPosition,
+  removePicture,
 } = messageSlice.actions;
 
 export default messageSlice.reducer;

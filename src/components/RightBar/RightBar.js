@@ -47,7 +47,7 @@ const RightBar = () => {
             + Add Description
           </button>
         )}
-      {flag && (
+      {flag && activeCardId && (
         <Description activeCardId={activeCardId} currentCard={currentCard} />
       )}
     </div>

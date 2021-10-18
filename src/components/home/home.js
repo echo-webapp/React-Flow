@@ -1,23 +1,17 @@
 import React, { useState, useCallback, useEffect } from "react";
-import ReactFlow, {
-  useStoreState,
-  addEdge,
-  updateEdge,
-  removeElements,
-} from "react-flow-renderer";
+import ReactFlow, { useStoreState } from "react-flow-renderer";
 import Leftbar from "../leftbar/leftbar";
 import Rightbar from "../RightBar/RightBar";
 import * as S from "./styles";
 import { useDrop, useDragLayer } from "react-dnd";
-import { Button } from "@mui/material";
 import { ItemTypes } from "../leftbar/ItemTypes";
 import MessageCard from "../message_card/MessageCard";
 import { useDispatch, useSelector } from "react-redux";
 import { AddMessage } from "./../../store/Reducers/message";
 import { SetActiveCard } from "../../store/Reducers/cardState";
 import { AddEdge, ChangeCardPosition } from "../../store/Reducers/message";
+import { RemoveActiveCard } from "../../store/Reducers/cardState";
 import CustomEdge from "./customEdge";
-import { useTheme } from "@material-ui/styles";
 
 const NodesDebugger = () => {
   const nodes = useStoreState((state) => state.nodes);
@@ -27,9 +21,10 @@ const NodesDebugger = () => {
 
 const Home = () => {
   const dispatch = useDispatch();
-  const node_elements = useSelector((store) => store.messages.message);
-  const [number, setnumber] = useState(0);
-
+  const [node_elements, activeCardId] = useSelector((store) => [
+    store.messages.message,
+    store.cardState.cardState.activeCardId,
+  ]);
   const nodeTypes = {
     specialNode: MessageCard,
   };
@@ -85,7 +80,6 @@ const Home = () => {
     };
 
     dispatch(AddEdge(new_param));
-    // setnode_elements((els) => addEdge(new_param, els));
   });
 
   const onNodeDrag = useCallback((event, node) => {
@@ -106,6 +100,11 @@ const Home = () => {
 
   const onEdgeContextMenu = (event, edge) => {};
 
+  const removeActiveCardId = (e) => {
+    console.log("clicked");
+    dispatch(RemoveActiveCard());
+  };
+
   return (
     <S.MainContainer>
       {/* <Button
@@ -117,6 +116,7 @@ const Home = () => {
         Clear PersistRoot
       </Button> */}
       <S.ReactFlowContainer
+        onPaneClick={removeActiveCardId}
         onElementClick={activeMessageCard}
         onElementsRemove={onElementsRemove}
         onNodeDrag={onNodeDrag}
