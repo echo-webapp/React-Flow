@@ -30,7 +30,9 @@ const Labels = () => {
               name="label1"
               value={labelList.label1}
               onChange={(e) =>
-                dispatch(SetLabelList({ label1: e.target.value }))
+                dispatch(
+                  SetLabelList({ label: "label1", value: e.target.value })
+                )
               }
               onBlur={() => {
                 setlabelFlag(true);
@@ -48,7 +50,9 @@ const Labels = () => {
               name="label1"
               value={labelList.label2}
               onChange={(e) =>
-                dispatch(SetLabelList({ label2: e.target.value }))
+                dispatch(
+                  SetLabelList({ label: "label2", value: e.target.value })
+                )
               }
               onBlur={() => {
                 setlabelFlag(true);
@@ -67,7 +71,9 @@ const Labels = () => {
               name="label1"
               value={labelList.label3}
               onChange={(e) =>
-                dispatch(SetLabelList({ label3: e.target.value }))
+                dispatch(
+                  SetLabelList({ label: "label3", value: e.target.value })
+                )
               }
               onBlur={() => {
                 setlabelFlag(true);
@@ -85,7 +91,9 @@ const Labels = () => {
               name="label1"
               value={labelList.label4}
               onChange={(e) =>
-                dispatch(SetLabelList({ label4: e.target.value }))
+                dispatch(
+                  SetLabelList({ label: "label4", value: e.target.value })
+                )
               }
               onBlur={() => {
                 setlabelFlag(true);
@@ -104,7 +112,9 @@ const Labels = () => {
               name="label1"
               value={labelList.label5}
               onChange={(e) =>
-                dispatch(SetLabelList({ label5: e.target.value }))
+                dispatch(
+                  SetLabelList({ label: "label5", value: e.target.value })
+                )
               }
               onBlur={() => {
                 setlabelFlag(true);

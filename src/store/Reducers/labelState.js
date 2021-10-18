@@ -13,9 +13,8 @@ const cardSlice = createSlice({
   name: "labelState",
   reducers: {
     SetLabelList: (state, action) => {
-      let temp = { ...state, ...action.payload };
-      console.log(temp);
-      state = { ...temp };
+      console.log(action.payload);
+      state[action.payload.label] = action.payload.value;
     },
   },
 });
