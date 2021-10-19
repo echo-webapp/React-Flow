@@ -12,7 +12,6 @@ import {
   AddOption,
   removeMessage,
   ChangeTitle,
-  removePicture,
 } from "../../store/Reducers/message";
 import * as S from "./styles";
 import { useDispatch } from "react-redux";
@@ -104,7 +103,7 @@ const MessageCard = (props) => {
   };
 
   const removeNode = () => {
-    dispatch(removeMessage(activeCardId));
+    dispatch(removeMessage(props.id));
   };
 
   const changeTitle = (e) => {
