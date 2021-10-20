@@ -175,13 +175,13 @@ const MessageCard = (props) => {
           style={{ top: "50%" }}
           id={`a`}
         />
-        <Handle
+        {/* <Handle
           type="source"
           className="connector"
           position={Position.Right}
           style={{ top: "50%" }}
           id={`a`}
-        />
+        /> */}
 
         {!image?.name && (
           <S.AddImage>
@@ -203,13 +203,13 @@ const MessageCard = (props) => {
               optionsList={optionsList}
               index={key}
             />
-            <Handle
+            {/* <Handle
               className="connector"
               type="target"
               position={Position.Left}
               id={`${key}`}
               style={{ top: "50%" }}
-            />
+            /> */}
             <Handle
               className="connector"
               type="source"
