@@ -108,14 +108,14 @@ const Home = () => {
 
   return (
     <S.MainContainer>
-      <Button
+      {/* <Button
         style={{ zIndex: 10, position: "absolute", left: 0, top: 10 }}
         onClick={() => {
           localStorage.removeItem("persist:root");
         }}
       >
         Clear PersistRoot
-      </Button>
+      </Button> */}
       <S.ReactFlowContainer
         onPaneClick={removeActiveCardId}
         onElementClick={activeMessageCard}
