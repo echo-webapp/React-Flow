@@ -43,14 +43,17 @@ const messageSlice = createSlice({
           action.payload == state.message[i].source ||
           action.payload == state.message[i].target
         ) {
+        } else {
           edge_index.push(i);
         }
       }
+      const all_messages = [];
       if (edge_index.length > 0) {
         for (let i = 0; i < edge_index.length; i++) {
-          state.message.splice(edge_index[i], 1);
+          all_messages.push(state.message[edge_index[i]]);
         }
       }
+      state.message = all_messages;
     },
 
     AddEdge: (state, action) => {
@@ -79,7 +82,7 @@ const messageSlice = createSlice({
     },
 
     removePicture: (state, action) => {
-      console.log('here')
+      console.log("here");
       for (let i = 0; i < state.message.length; i++) {
         if (state.message[i].id === action.payload) {
           state.message[i].data.image = null;

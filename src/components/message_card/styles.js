@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import TextareaAutosize from "react-textarea-autosize";
-import { Button } from "@material-ui/core";
+
+export const connectorStyle = {
+  height: 15,
+  width: 15,
+  top: "50%",
+  borderRadius: "50%",
+  background: "var(--gradient-green)",
+  border: "2px solid var(--white)",
+};
+
 export const Container = styled.div`
   cursor: default;
   border-radius: 12px;
@@ -10,6 +19,14 @@ export const Container = styled.div`
     props.activeId == props.id
       ? "4px 8px 8px rgba(103, 39, 242, 0.3)"
       : "none"};
+  .connector {
+    height: 15px;
+    width: 15px;
+    top: 50%;
+    border-radius: 50%;
+    background: var(--gradient-green);
+    border: 2px solid var(--white);
+  }
 `;
 
 export const MessageCardStatus = styled.div`
@@ -67,7 +84,7 @@ export const MessageCardHeaderTitle = styled(TextareaAutosize)`
   line-height: 15px;
   margin-top: 4px;
   cursor: default;
-  &:focus{
+  &:focus {
     cursor: text;
   }
 `;

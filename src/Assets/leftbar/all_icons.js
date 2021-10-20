@@ -99,7 +99,7 @@ export const connector_tool = (
       d="M4.66797 21.3333C4.66797 21.3333 8.12604 22.9615 10.4964 20.0068C12.8667 17.0522 9.70217 13.5456 12.5704 10.4036C15.091 7.64249 19.6815 8.92587 19.6815 8.92587M19.6815 8.92587L15.3348 5M19.6815 8.92587L16.0014 13"
       stroke="#6727F2"
       stroke-width="1.5"
-      stroke-linecap="round"
+      strokeLinecap="round"
     />
     <ellipse cx="1.43999" cy="20.5" rx="1.43999" ry="1.5" fill="#6727F2" />
     <ellipse cx="22.5611" cy="8.6875" rx="1.43999" ry="1.5" fill="#6727F2" />
@@ -163,7 +163,7 @@ export const template3 = (
       y2="22.7757"
       stroke="#6727F2"
       stroke-width="1.33333"
-      stroke-linecap="round"
+      strokeLinecap="round"
     />
     <rect
       x="6.66667"
@@ -186,7 +186,7 @@ export const template3 = (
       y2="24.6488"
       stroke="#6727F2"
       stroke-width="1.33333"
-      stroke-linecap="round"
+      strokeLinecap="round"
     />
   </svg>
 );

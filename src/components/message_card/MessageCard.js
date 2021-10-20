@@ -14,14 +14,11 @@ import {
   ChangeTitle,
 } from "../../store/Reducers/message";
 import * as S from "./styles";
+import { connectorStyle } from "./styles";
 import { useDispatch } from "react-redux";
-import { Handle } from "react-flow-renderer";
+import { Handle, Position } from "react-flow-renderer";
 
-const useStyles = makeStyles({
-  menu: {
-    display: "flex",
-  },
-});
+const ID = Math.random().toString(36).substr(2, 6);
 
 const MessageCard = (props) => {
   const [activeCardId, message] = useSelector((state) => [
@@ -175,14 +172,16 @@ const MessageCard = (props) => {
         <Handle
           className="connector"
           type="target"
-          position="left"
-          id={(Math.random() * 1000).toFixed(0)}
+          position={Position.Left}
+          style={{ top: "50%" }}
+          id={`a`}
         />
         <Handle
           type="source"
           className="connector"
-          position="right"
-          id={(Math.random() * 1000).toFixed(0)}
+          position={Position.Right}
+          style={{ top: "50%" }}
+          id={`a`}
         />
 
         {!image?.name && (
@@ -197,27 +196,31 @@ const MessageCard = (props) => {
           </S.AddImage>
         )}
       </S.MessageCardInputBody>
-      {optionsList.map((Option, key) => (
-        <div key={key} style={{ position: "relative" }}>
-          <MessageOption
-            optiontext={optionsList[key]}
-            optionsList={optionsList}
-            index={key}
-          />
-          {/* <Handle
-            type="target"
-            position="left"
-            id={(Math.random() * 1000).toFixed(0)}
-            style={S.connectorStyle}
-          />
-          <Handle
-            type="source"
-            position="right"
-            id={(Math.random() * 1000).toFixed(0)}
-            style={S.connectorStyle}
-          /> */}
-        </div>
-      ))}
+      {optionsList.map((Option, key) => {
+        return (
+          <div key={key} style={{ position: "relative" }}>
+            <MessageOption
+              optiontext={optionsList[key]}
+              optionsList={optionsList}
+              index={key}
+            />
+            <Handle
+              className="connector"
+              type="target"
+              position={Position.Left}
+              id={`${key}`}
+              style={{ top: "50%" }}
+            />
+            <Handle
+              className="connector"
+              type="source"
+              position={Position.Right}
+              id={`${key}`}
+              style={{ top: "50%" }}
+            />
+          </div>
+        );
+      })}
       <S.AddOptionButton onClick={() => dispatch(AddOption(activeCardId))}>
         + Add options
       </S.AddOptionButton>
