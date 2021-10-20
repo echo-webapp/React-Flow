@@ -1,7 +1,6 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import MessageIcon from "../../Assets/message_card/MessageIcon";
 import AddImageIcon from "../../Assets/message_card/AddImageIcon";
-import { makeStyles } from "@material-ui/core";
 import ShowImage from "./ShowImage";
 import DeleteIcons from "../../Assets/message_card/DeleteIcon";
 import MessageOption from "./MessageOption";
@@ -14,10 +13,9 @@ import {
   ChangeTitle,
 } from "../../store/Reducers/message";
 import * as S from "./styles";
-import { connectorStyle } from "./styles";
 import { useDispatch } from "react-redux";
 import { Handle, Position } from "react-flow-renderer";
-
+import { RemoveActiveCard } from "./../../store/Reducers/cardState";
 const ID = Math.random().toString(36).substr(2, 6);
 
 const MessageCard = (props) => {
@@ -101,6 +99,7 @@ const MessageCard = (props) => {
 
   const removeNode = () => {
     dispatch(removeMessage(props.id));
+    dispatch(RemoveActiveCard(props.id));
   };
 
   const changeTitle = (e) => {
