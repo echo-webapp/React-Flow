@@ -40,13 +40,18 @@ const EdgeLabel = (props) => {
 
   return (
     <div className="LeftDescriptionContainer">
-      <div className="LeftDescriptionContainerHeader">
-        <div className="DescriptionHeaderText">Label</div>
+      <div
+        className="LeftDescriptionContainerHeader "
+        style={{
+          borderBottom: "1px solid var(--primary-color)",
+        }}
+      >
+        <div className="DescriptionHeaderText">Connector Title</div>
         <div className="DescriptionHeaderIcon" onClick={deleteButtonHandler}>
           <DeleteIcon height="15px" width="15px" />
         </div>
       </div>
-      <div className="LeftDescriptionTextBody">
+      <div className="LeftDescriptionTextBody" style={{ paddingTop: 12 }}>
         <TextareaAutosize
           maxLength="500"
           className="LeftDescriptionText"

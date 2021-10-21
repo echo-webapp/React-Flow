@@ -14,75 +14,83 @@ export const MainContainer = styled.div`
 
 export const Container = styled.div`
   display: flex;
-  border-radius: 20px;
   height: 60px;
-  width: 610px;
   margin-left: 20px;
-  background: var(--white);
-  border: 2px solid var(--primary-color);
-`;
-
-export const ToolBar = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  border-right: var(--primary-color);
-  div {
-    div {
-      height: 30px;
-      width: 50px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  .right {
+    &:hover {
+      cursor: pointer;
+      &::before {
+        content: "Delete flow";
+        position: absolute;
+        text-align: center;
+        width: 60px;
+        top: -35px;
+        right: 10px;
+        font-size: 10px;
+        transform: translateX(30%);
+        background: rgba(32, 40, 97, 1);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 49.2308px;
+      }
     }
-    .move-tool {
-      border-top-left-radius: 19px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: var(--gradient-green);
-      border-right: 2px solid var(--primary-color);
-      border-bottom: 2px solid var(--primary-color);
-    }
-    .hand-tool {
-      position: relative;
-      height: 26px;
-      width: 50px;
-      border-bottom-left-radius: 19px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-right: 2px solid var(--primary-color);
+  }
+  .left {
+    &:hover {
+      cursor: pointer;
+      &::before {
+        content: "Save flow";
+        position: absolute;
+        text-align: center;
+        width: 60px;
+        top: -35px;
+        left: 10px;
+        font-size: 10px;
+        transform: translateX(-30%);
+        background: rgba(32, 40, 97, 1);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 49.2308px;
+      }
     }
   }
 `;
 
 export const MessageBar = styled.div`
-  border-right: 2px solid var(--primary-color);
-  padding-right: 32px;
-  padding-left: 28px;
+  border: 2px solid var(--primary-color);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  background: var(--white);
+  border-radius: 20px;
+  padding-right: 48px;
+  padding-left: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 3;
   &:hover {
     cursor: pointer;
   }
 `;
 
-export const ConnectorBar = styled.div`
-  border-right: 2px solid var(--primary-color);
-  padding-right: 32px;
-  padding-left: 28px;
+export const IconDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  &:hover {
-    cursor: pointer;
+  background: var(--white);
+  border: 2px solid var(--primary-color);
+  border-left: ${(props) =>
+    props.side == "left" ? "2px solid var(--primary-color)" : "none"};
+  border-right: ${(props) =>
+    props.side == "right" ? "2px solid var(--primary-color)" : "none"};
+  transform: ${(props) =>
+    props.side == "left" ? "translateX(50%)" : "translateX(-50%)"};
+  border-radius: 20px;
+  padding-right: 30px;
+  padding-left: 30px;
+  z-index: 2;
+  .icon {
+    transform: ${(props) =>
+      props.side == "left" ? "translateX(-120%)" : "translateX(120%)"};
   }
-`;
-
-export const Templates = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 28px;
-  gap: 16px;
 `;

@@ -2,14 +2,9 @@ import React, { useState, useEffect } from "react";
 import { ItemTypes } from "./ItemTypes";
 import * as S from "./styles";
 import {
-  handtool,
-  connector_tool,
+  delete_icon,
+  saveicon,
   message_icon,
-  movetool,
-  template2,
-  template3,
-  template4,
-  template5,
 } from "../../Assets/leftbar/all_icons";
 import { useDrag, useDragLayer } from "react-dnd";
 
@@ -35,16 +30,10 @@ const Sidebar = () => {
   return (
     <S.MainContainer onClick={() => {}}>
       <S.Container>
-        <S.ToolBar>
-          <div>
-            <div className="move-tool">{movetool}</div>
-          </div>
-          <div>
-            <div className="hand-tool">{handtool}</div>
-          </div>
-        </S.ToolBar>
+        <S.IconDiv className="left" side="left">
+          <div className="icon">{saveicon}</div>
+        </S.IconDiv>
         <S.MessageBar>
-          {/* <div className="text">Create</div> */}
           {!collect.isDragging ? (
             <div className="icon" ref={drag}>
               {message_icon}
@@ -55,16 +44,9 @@ const Sidebar = () => {
             </div>
           )}
         </S.MessageBar>
-        <S.ConnectorBar>
-          {/* <div className="text">Tool</div> */}
-          <div className="icon">{connector_tool}</div>
-        </S.ConnectorBar>
-        <S.Templates>
-          <div className="icon">{template2}</div>
-          <div className="icon">{template3}</div>
-          <div className="icon">{template4}</div>
-          <div className="icon">{template5}</div>
-        </S.Templates>
+        <S.IconDiv className="right" side="right">
+          <div className="icon">{delete_icon}</div>
+        </S.IconDiv>
       </S.Container>
     </S.MainContainer>
   );

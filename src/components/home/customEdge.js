@@ -48,10 +48,10 @@ export default function CustomEdge({
         d={edgePath}
         markerEnd={markerEnd}
       />
-      <text>
+      <text dy="-5" opacity={0.6}>
         <textPath
           href={`#${id}`}
-          style={{ fontSize: "20px" }}
+          style={{ transform: "translateY(10px)", fontSize: "20px" }}
           startOffset="50%"
           textAnchor="middle"
         >
