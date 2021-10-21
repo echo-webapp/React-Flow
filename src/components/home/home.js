@@ -1,5 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react";
-import ReactFlow, { useStoreState } from "react-flow-renderer";
+import ReactFlow, {
+  useStoreState,
+  MiniMap,
+  Controls,
+  Background,
+} from "react-flow-renderer";
 import Leftbar from "../leftbar/leftbar";
 import Rightbar from "../RightBar/RightBar";
 import * as S from "./styles";
@@ -172,9 +177,17 @@ const Home = () => {
           onEdgeContextMenu={onEdgeContextMenu}
           maxZoom={10}
         >
-          <GridDots />
+          {/* <GridDots /> */}
+          <Background
+            color="rgba(206, 203, 220, 1)"
+            variant="dots"
+            gap={20}
+            size={2}
+          />
           <Leftbar setOpen1={setOpen1} setOpen2={setOpen2} />
           <NodesDebugger />
+          <MiniMap />
+          <Controls />
         </S.ReactFlowContainer>
       </S.Flex>
       <Rightbar />
