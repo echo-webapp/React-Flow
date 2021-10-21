@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   cardState: {
     activeCardId: null,
+    activeEdgeId: null,
   },
 };
 
@@ -17,9 +18,22 @@ const cardSlice = createSlice({
     RemoveActiveCard: (state, action) => {
       state.cardState.activeCardId = null;
     },
+
+    SetActiveEdge: (state, action) => {
+      state.cardState.activeEdgeId = action.payload;
+    },
+
+    RemoveActiveEdge: (state, action) => {
+      state.cardState.activeEdgeId = null;
+    },
   },
 });
 
-export const { SetActiveCard, RemoveActiveCard } = cardSlice.actions;
+export const {
+  SetActiveCard,
+  RemoveActiveCard,
+  SetActiveEdge,
+  RemoveActiveEdge,
+} = cardSlice.actions;
 
 export default cardSlice.reducer;

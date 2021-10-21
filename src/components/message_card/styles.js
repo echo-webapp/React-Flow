@@ -251,7 +251,7 @@ export const CrossButton = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 10px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 200;

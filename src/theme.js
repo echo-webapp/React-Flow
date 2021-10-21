@@ -20,9 +20,14 @@ export const GlobalStyle = createGlobalStyle`
     vertical-align: middle;
   }
   .react-flow__edge-path{
+    &:hover{
+      cursor: pointer;
+    }
     stroke: black;
     stroke-width: 2.5;
   }
-;
+  .react-flow__edge.selected .react-flow__edge-path{
+    stroke:var(--primary-color);
+  }
 
 `;

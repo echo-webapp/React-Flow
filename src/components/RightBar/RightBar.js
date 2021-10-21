@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./RightBar.css";
-import Avatar from "@mui/material/Avatar";
+import Avatar from "@material-ui/core/Avatar";
 import Labels from "./labels";
 import Description from "./Description";
 import { useSelector } from "react-redux";

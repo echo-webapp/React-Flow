@@ -8,7 +8,11 @@ import { ItemTypes } from "../leftbar/ItemTypes";
 import MessageCard from "../message_card/MessageCard";
 import { useDispatch, useSelector } from "react-redux";
 import { AddMessage } from "./../../store/Reducers/message";
-import { SetActiveCard } from "../../store/Reducers/cardState";
+import {
+  RemoveActiveEdge,
+  SetActiveCard,
+  SetActiveEdge,
+} from "../../store/Reducers/cardState";
 import { AddEdge, ChangeCardPosition } from "../../store/Reducers/message";
 import { RemoveActiveCard } from "../../store/Reducers/cardState";
 import { Button } from "@material-ui/core";
@@ -22,9 +26,10 @@ const NodesDebugger = () => {
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [node_elements, activeCardId] = useSelector((store) => [
+  const [node_elements, activeCardId, activeEdgeId] = useSelector((store) => [
     store.messages.message,
     store.cardState.cardState.activeCardId,
+    store.cardState.cardState.activeEdgeId,
   ]);
   const nodeTypes = {
     specialNode: MessageCard,
@@ -69,7 +74,23 @@ const Home = () => {
   });
 
   const activeMessageCard = useCallback((event, element) => {
-    dispatch(SetActiveCard(element.id));
+    let ele = null;
+    for (let i = 0; i < node_elements.length; i++) {
+      if (node_elements[i].id == element.id) {
+        ele = node_elements[i];
+      }
+    }
+    if (ele?.data) {
+      if (activeEdgeId) {
+        dispatch(RemoveActiveEdge());
+      }
+      dispatch(SetActiveCard(element.id));
+    } else {
+      if (activeCardId) {
+        dispatch(RemoveActiveCard());
+      }
+      dispatch(SetActiveEdge(element.id));
+    }
   });
 
   const onConnect = useCallback((params) => {
@@ -101,8 +122,13 @@ const Home = () => {
 
   const onEdgeContextMenu = (event, edge) => {};
 
-  const removeActiveCardId = (e) => {
-    dispatch(RemoveActiveCard());
+  const removeActiveIds = (e) => {
+    if (activeCardId) {
+      dispatch(RemoveActiveCard());
+    }
+    if (activeEdgeId) {
+      dispatch(RemoveActiveEdge());
+    }
   };
 
   return (
@@ -116,7 +142,7 @@ const Home = () => {
         Clear PersistRoot
       </Button> */}
       <S.ReactFlowContainer
-        onPaneClick={removeActiveCardId}
+        onPaneClick={removeActiveIds}
         onElementClick={activeMessageCard}
         onElementsRemove={onElementsRemove}
         onNodeDrag={onNodeDrag}
