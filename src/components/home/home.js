@@ -20,7 +20,7 @@ import CustomEdge from "./customEdge";
 import SaveFlow from "./../save&delete/SaveFlow";
 import DeleteFlow from "../save&delete/DeleteFlow";
 
-const arr = [...Array(100)];
+const arr = [...Array(5000)];
 
 const NodesDebugger = () => {
   const nodes = useStoreState((state) => state.nodes);
@@ -142,7 +142,6 @@ const Home = () => {
 
   return (
     <S.MainContainer>
-      {/* <S.DotsGrid></S.DotsGrid> */}
       {/* {arr.map(() =>{
 
       })} */}
@@ -176,6 +175,11 @@ const Home = () => {
           onEdgeContextMenu={onEdgeContextMenu}
           maxZoom={10}
         >
+          <S.DotsGrid>
+            {arr.map((item) => {
+              return <div></div>;
+            })}
+          </S.DotsGrid>
           <Leftbar setOpen1={setOpen1} setOpen2={setOpen2} />
           <NodesDebugger />
         </S.ReactFlowContainer>

@@ -15,7 +15,18 @@ export const ReactFlowContainer = styled(ReactFlow)`
 `;
 
 export const DotsGrid = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   display: grid;
+  grid-template-columns: repeat(100, 1fr);
+  gap: 12px;
+  div {
+    width: 4px;
+    height: 4px;
+    background: rgba(206, 203, 220, 1);
+    border-radius: 50%;
+  }
 `;
 
 export const Flex = styled.div`
