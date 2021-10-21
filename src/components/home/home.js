@@ -32,11 +32,14 @@ const Home = () => {
   const dispatch = useDispatch();
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
-  const [node_elements, activeCardId, activeEdgeId] = useSelector((store) => [
-    store.messages.message,
-    store.cardState.cardState.activeCardId,
-    store.cardState.cardState.activeEdgeId,
-  ]);
+  const [node_elements, activeCardId, activeEdgeId, flowName] = useSelector(
+    (store) => [
+      store.messages.message,
+      store.cardState.cardState.activeCardId,
+      store.cardState.cardState.activeEdgeId,
+      store.flowName.flowName,
+    ]
+  );
   const nodeTypes = {
     specialNode: MessageCard,
   };
@@ -154,7 +157,7 @@ const Home = () => {
       <SaveFlow open1={open1} setOpen1={setOpen1} />
       <DeleteFlow open2={open2} setOpen2={setOpen2} />
       <S.Flex>
-        <S.FlowTitle>Untitle flow_1</S.FlowTitle>
+        <S.FlowTitle>{flowName}</S.FlowTitle>
         <S.ReactFlowContainer
           onPaneClick={removeActiveIds}
           onElementClick={activeMessageCard}

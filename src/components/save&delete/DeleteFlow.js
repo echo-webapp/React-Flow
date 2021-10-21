@@ -38,7 +38,12 @@ const DeleteFlow = (props) => {
         <div className={classes.paper}>
           <div className="saveHeader">
             <div className="saveHeaderText">Delete Flow</div>
-            <div className="delete-icon">
+            <div
+              className="delete-icon"
+              onClick={() => {
+                props.setOpen2(false);
+              }}
+            >
               <img src={CrossButtonIcon} alt="x" />
             </div>
           </div>

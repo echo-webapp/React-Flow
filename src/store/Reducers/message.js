@@ -3,7 +3,6 @@ import { addEdge } from "react-flow-renderer";
 
 const initialState = {
   message: [],
-  edges: [],
 };
 
 const messageSlice = createSlice({

@@ -34,6 +34,7 @@ select:focus {
   outline: none;
 }
 .saveInput {
+  width: 80%;
   background: #f0f2f2;
   margin-left: 20px;
   margin-top: 16px;
