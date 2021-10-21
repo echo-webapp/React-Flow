@@ -28,3 +28,5 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+const storeObject = { store, persistor };
+export default storeObject;

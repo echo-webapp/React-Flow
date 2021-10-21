@@ -102,7 +102,6 @@ const Home = () => {
   const onEdgeContextMenu = (event, edge) => {};
 
   const removeActiveCardId = (e) => {
-    console.log("clicked");
     dispatch(RemoveActiveCard());
   };
 

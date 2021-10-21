@@ -43,16 +43,11 @@ const MessageCard = (props) => {
   }, [message]);
 
   useEffect(() => {
-    console.log("image", image?.name);
     if (image?.name) {
       const image_url = URL.createObjectURL(image);
       setimage_url(image_url);
     }
   }, [image]);
-
-  useEffect(() => {
-    console.log("image_url", image_url);
-  }, [image_url]);
 
   useEffect(() => {
     message.map((message) => {
@@ -132,7 +127,6 @@ const MessageCard = (props) => {
           <S.MessageCardHeaderTitle
             readOnly={title_flag}
             onDoubleClick={(e) => {
-              console.log("clcik");
               e.preventDefault();
               settitle_flag(false);
             }}
@@ -175,13 +169,13 @@ const MessageCard = (props) => {
           style={{ top: "50%" }}
           id={`a`}
         />
-        {/* <Handle
+        <Handle
           type="source"
           className="connector"
           position={Position.Right}
           style={{ top: "50%" }}
           id={`a`}
-        /> */}
+        />
 
         {!image?.name && (
           <S.AddImage>

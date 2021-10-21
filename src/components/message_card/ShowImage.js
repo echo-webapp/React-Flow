@@ -52,7 +52,6 @@ const ShowImage = (props) => {
             aria-controls="removes pic"
             aria-haspopup="false"
             onClick={() => {
-              console.log("clicked");
               dispatch(removePicture(props.id));
             }}
           >

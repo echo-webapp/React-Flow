@@ -72,7 +72,6 @@ const messageSlice = createSlice({
     },
 
     AddPicture: (state, action) => {
-      console.log(action.payload);
       const image = action.payload.image;
       for (let i = 0; i < state.message.length; i++) {
         if (state.message[i].id === action.payload.id) {
@@ -82,7 +81,6 @@ const messageSlice = createSlice({
     },
 
     removePicture: (state, action) => {
-      console.log("here");
       for (let i = 0; i < state.message.length; i++) {
         if (state.message[i].id === action.payload) {
           state.message[i].data.image = null;
