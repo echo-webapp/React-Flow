@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { ItemTypes } from "./ItemTypes";
 import * as S from "./styles";
 import {

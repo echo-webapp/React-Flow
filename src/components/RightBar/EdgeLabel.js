@@ -15,7 +15,6 @@ const EdgeLabel = (props) => {
   const [descriptionText, setDescriptionText] = useState("");
 
   useEffect(() => {
-    console.log("inside");
     for (let i = 0; i < message.length; i++) {
       if (props.activeEdgeId == message[i].id) {
         setDescriptionText(message[i]?.label);

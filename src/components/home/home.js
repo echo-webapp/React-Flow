@@ -19,14 +19,14 @@ import { Button } from "@material-ui/core";
 import CustomEdge from "./customEdge";
 import SaveFlow from "./../save&delete/SaveFlow";
 import DeleteFlow from "../save&delete/DeleteFlow";
-
-const arr = [...Array(5000)];
+import GridDots from "./GridDots";
 
 const NodesDebugger = () => {
   const nodes = useStoreState((state) => state.nodes);
   const edges = useStoreState((state) => state.edges);
   return null;
 };
+const arr = [...Array(5000)];
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -142,9 +142,6 @@ const Home = () => {
 
   return (
     <S.MainContainer>
-      {/* {arr.map(() =>{
-
-      })} */}
       {/* <Button
         style={{ zIndex: 10, position: "absolute", left: 0, top: 10 }}
         onClick={() => {
@@ -175,11 +172,7 @@ const Home = () => {
           onEdgeContextMenu={onEdgeContextMenu}
           maxZoom={10}
         >
-          <S.DotsGrid>
-            {arr.map((item) => {
-              return <div></div>;
-            })}
-          </S.DotsGrid>
+          <GridDots />
           <Leftbar setOpen1={setOpen1} setOpen2={setOpen2} />
           <NodesDebugger />
         </S.ReactFlowContainer>

@@ -48,7 +48,7 @@ export default function CustomEdge({
         d={edgePath}
         markerEnd={markerEnd}
       />
-      <text dy="-5" opacity={0.6}>
+      <text dy="-5" opacity={0.8}>
         <textPath
           href={`#${id}`}
           style={{ transform: "translateY(10px)", fontSize: "20px" }}
