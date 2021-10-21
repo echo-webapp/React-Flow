@@ -1,6 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { addEdge } from "react-flow-renderer";
-import { removeElements } from "react-flow-renderer";
 
 const initialState = {
   message: [],
@@ -58,6 +57,16 @@ const messageSlice = createSlice({
 
     AddEdge: (state, action) => {
       state.message = addEdge(action.payload, state.message);
+    },
+
+    RemoveEdge: (state, action) => {
+      let index = null;
+      for (let i = 0; i < state.message.length; i++) {
+        if (state.message[i].id == action.payload.id) {
+          index = i;
+        }
+      }
+      state.message.splice(index, 1);
     },
 
     AddDescription: (state, action) => {
@@ -156,6 +165,20 @@ const messageSlice = createSlice({
         }
       }
     },
+    AddEdgeLabel: (state, action) => {
+      console.log(action.payload);
+      let index = null;
+      let all_nodes = [];
+      for (let i = 0; i < state.message.length; i++) {
+        if (state.message[i].id == action.payload.id) {
+          index = i;
+        }
+        all_nodes.push(state.message[i]);
+      }
+      all_nodes[index].label = action.payload.value;
+      state.message = all_nodes;
+      console.log(state.message);
+    },
   },
 });
 
@@ -167,6 +190,7 @@ export const {
   AddOptionData,
   DeleteOption,
   AddEdge,
+  RemoveEdge,
   AddRightSideDescription,
   DeleteRightSideDescription,
   removeMessage,
@@ -175,6 +199,7 @@ export const {
   DeleteColorTag,
   ChangeCardPosition,
   removePicture,
+  AddEdgeLabel,
 } = messageSlice.actions;
 
 export default messageSlice.reducer;

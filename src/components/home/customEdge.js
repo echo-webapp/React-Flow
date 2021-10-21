@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { getBezierPath, getMarkerEnd } from "react-flow-renderer";
+import { useSelector } from "react-redux";
 
 export default function CustomEdge({
   id,
@@ -23,8 +24,22 @@ export default function CustomEdge({
     targetPosition,
   });
   const markerEnd = getMarkerEnd(arrowHeadType, markerEndId);
+  const [activeEdgeId, message] = useSelector((store) => {
+    return [store.cardState.cardState.activeEdgeId, store.messages.message];
+  });
 
+  const [text, settext] = useState(null);
 
+  useEffect(() => {
+    message.map((message) => {
+      if (message.id == id) {
+        settext(message?.label);
+      }
+      return null;
+    });
+  }, [message]);
+
+  useEffect(() => {});
   return (
     <>
       <path
@@ -33,16 +48,16 @@ export default function CustomEdge({
         d={edgePath}
         markerEnd={markerEnd}
       />
-      {/* <text>
+      <text>
         <textPath
           href={`#${id}`}
           style={{ fontSize: "20px" }}
           startOffset="50%"
           textAnchor="middle"
         >
-          {data.text}
+          {text}
         </textPath>
-      </text> */}
+      </text>
     </>
   );
 }

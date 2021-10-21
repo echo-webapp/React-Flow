@@ -3,11 +3,13 @@ import "./RightBar.css";
 import Avatar from "@material-ui/core/Avatar";
 import Labels from "./labels";
 import Description from "./Description";
+import EdgeLabel from "./EdgeLabel";
 import { useSelector } from "react-redux";
 const RightBar = () => {
-  const activeCardId = useSelector(
-    (state) => state.cardState.cardState.activeCardId
-  );
+  const [activeCardId, activeEdgeId] = useSelector((state) => [
+    state.cardState.cardState.activeCardId,
+    state.cardState.cardState.activeEdgeId,
+  ]);
   const allNodes = useSelector((state) => state.messages.message);
   const [currentCard, setCurrentCard] = useState(null);
   const [flag, setFlag] = useState(false);
@@ -50,6 +52,7 @@ const RightBar = () => {
       {flag && activeCardId && (
         <Description activeCardId={activeCardId} currentCard={currentCard} />
       )}
+      {activeEdgeId && <EdgeLabel activeEdgeId={activeEdgeId} />}
     </div>
   );
 };

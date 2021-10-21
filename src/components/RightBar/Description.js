@@ -26,12 +26,12 @@ const Description = (props) => {
       setDescriptionText(props.currentCard?.data?.messageDescription);
     }
 
-    if (props.currentCard.tag !== undefined) {
-      if (props.currentCard.tag === "#E28383") setSelectedValue("a");
-      if (props.currentCard.tag === "#D9D572") setSelectedValue("b");
-      if (props.currentCard.tag === "#8699DD") setSelectedValue("c");
-      if (props.currentCard.tag === "#8ACF7F") setSelectedValue("d");
-      if (props.currentCard.tag === "#C48EBE") setSelectedValue("e");
+    if (props.currentCard?.tag !== undefined) {
+      if (props.currentCard?.tag === "#E28383") setSelectedValue("a");
+      if (props.currentCard?.tag === "#D9D572") setSelectedValue("b");
+      if (props.currentCard?.tag === "#8699DD") setSelectedValue("c");
+      if (props.currentCard?.tag === "#8ACF7F") setSelectedValue("d");
+      if (props.currentCard?.tag === "#C48EBE") setSelectedValue("e");
       setIconFlag(false);
     }
   }, [props.currentCard]);
