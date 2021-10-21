@@ -19,6 +19,9 @@ import { Button } from "@material-ui/core";
 import CustomEdge from "./customEdge";
 import SaveFlow from "./../save&delete/SaveFlow";
 import DeleteFlow from "../save&delete/DeleteFlow";
+
+const arr = [...Array(100)];
+
 const NodesDebugger = () => {
   const nodes = useStoreState((state) => state.nodes);
   const edges = useStoreState((state) => state.edges);
@@ -27,8 +30,8 @@ const NodesDebugger = () => {
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [open1, setOpen1] = React.useState(false);
-  const [open2, setOpen2] = React.useState(false);
+  const [open1, setOpen1] = useState(false);
+  const [open2, setOpen2] = useState(false);
   const [node_elements, activeCardId, activeEdgeId] = useSelector((store) => [
     store.messages.message,
     store.cardState.cardState.activeCardId,
@@ -136,6 +139,10 @@ const Home = () => {
 
   return (
     <S.MainContainer>
+      {/* <S.DotsGrid></S.DotsGrid> */}
+      {/* {arr.map(() =>{
+
+      })} */}
       {/* <Button
         style={{ zIndex: 10, position: "absolute", left: 0, top: 10 }}
         onClick={() => {
@@ -146,27 +153,30 @@ const Home = () => {
       </Button> */}
       <SaveFlow open1={open1} setOpen1={setOpen1} />
       <DeleteFlow open2={open2} setOpen2={setOpen2} />
-      <S.ReactFlowContainer
-        onPaneClick={removeActiveIds}
-        onElementClick={activeMessageCard}
-        onElementsRemove={onElementsRemove}
-        onNodeDrag={onNodeDrag}
-        nodesConnectable={true}
-        nodesDraggable={true}
-        connectionLineStyle={{ strokeWidth: 3 }}
-        nodeTypes={nodeTypes}
-        ref={drop}
-        elements={node_elements}
-        isover={isover}
-        onConnect={onConnect}
-        onEdgeUpdate={onEdgeUpdate}
-        edgeTypes={EdgeType}
-        onEdgeContextMenu={onEdgeContextMenu}
-        maxZoom={10}
-      >
-        <Leftbar setOpen1={setOpen1} setOpen2={setOpen2} />
-        <NodesDebugger />
-      </S.ReactFlowContainer>
+      <S.Flex>
+        <S.FlowTitle>Untitle flow_1</S.FlowTitle>
+        <S.ReactFlowContainer
+          onPaneClick={removeActiveIds}
+          onElementClick={activeMessageCard}
+          onElementsRemove={onElementsRemove}
+          onNodeDrag={onNodeDrag}
+          nodesConnectable={true}
+          nodesDraggable={true}
+          connectionLineStyle={{ strokeWidth: 3 }}
+          nodeTypes={nodeTypes}
+          ref={drop}
+          elements={node_elements}
+          isover={isover}
+          onConnect={onConnect}
+          onEdgeUpdate={onEdgeUpdate}
+          edgeTypes={EdgeType}
+          onEdgeContextMenu={onEdgeContextMenu}
+          maxZoom={10}
+        >
+          <Leftbar setOpen1={setOpen1} setOpen2={setOpen2} />
+          <NodesDebugger />
+        </S.ReactFlowContainer>
+      </S.Flex>
       <Rightbar />
     </S.MainContainer>
   );

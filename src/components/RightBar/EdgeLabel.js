@@ -46,7 +46,7 @@ const EdgeLabel = (props) => {
           borderBottom: "1px solid var(--primary-color)",
         }}
       >
-        <div className="DescriptionHeaderText">Connector Title</div>
+        <div className="DescriptionHeaderText">Title</div>
         <div className="DescriptionHeaderIcon" onClick={deleteButtonHandler}>
           <DeleteIcon height="15px" width="15px" />
         </div>
