@@ -42,7 +42,6 @@ select:focus {
   border: 1px solid #6727f2;
   box-sizing: border-box;
   border-radius: 10px;
-  width: 204.5px;
   height: 62.03px;
   font-size: 15px;
   line-height: 12px;
@@ -66,51 +65,47 @@ select:focus {
   width: 50%;
   height: 62.03px;
   background: #6727f2;
-  border-radius: 0px 0px 0px 10px;
   font-weight: 600;
   font-size: 15px;
   line-height: 29px;
   color: #ffffff;
+  border-bottom-left-radius: 20px;
 }
 .footerCancel {
   background: none;
   color: inherit;
   border: none;
   padding: 0;
-  font: inherit;
   cursor: pointer;
   outline: inherit;
   width: 50%;
   height: 62.03px;
-  border: 1.93839px solid #6727f2;
-  box-sizing: border-box;
-  border-radius: 0px 0px 19.3839px 0px;
+  border: 1px solid #6727f2;
   font-weight: 600;
   font-size: 15px;
   color: var(--primary-color);
+  border-bottom-right-radius: 20px;
 }
 .footerDelete {
   background: none;
   color: inherit;
   border: none;
   padding: 0;
-  font: inherit;
   cursor: pointer;
   outline: inherit;
   width: 50%;
   height: 62.03px;
   background: #6727f2;
-  border-radius: 0px 0px 10px 0px;
   font-weight: 600;
   font-size: 15px;
   color: #ffffff;
+  border-bottom-right-radius: 20px;
 }
 .footerCancelDelete {
   background: none;
   color: inherit;
   border: none;
   padding: 0;
-  font: inherit;
   cursor: pointer;
   outline: inherit;
   width: 50%;
@@ -120,6 +115,7 @@ select:focus {
   line-height: 15px;
   border: 1px solid #6727f2;
   color: #6727f2;
+  border-bottom-left-radius: 20px;
 }
 .saveBody {
   padding: 18px 20px 30px 21px;
