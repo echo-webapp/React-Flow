@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import "./SaveFlow.css";
+import CrossButtonIcon from "../../Assets/message_card/crossbutton1.svg";
+
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
@@ -13,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     position: "relative",
-    width: "409px",
-    height: "270px",
+    width: "340px",
+    // height: "250px",
     background: "#F0F2F2",
     borderRadius: "10px",
   },
@@ -36,6 +38,9 @@ const DeleteFlow = (props) => {
         <div className={classes.paper}>
           <div className="saveHeader">
             <div className="saveHeaderText">Delete Flow</div>
+            <div className="delete-icon">
+              <img src={CrossButtonIcon} alt="x" />
+            </div>
           </div>
           <div className="saveBody">
             Are you sure you wanna delete this entire flow ?
