@@ -8,7 +8,7 @@ import {
 } from "../../Assets/leftbar/all_icons";
 import { useDrag, useDragLayer } from "react-dnd";
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   const { currentOffset } = useDragLayer((monitor) => ({
     item: monitor.getItem(),
     itemType: monitor.getItemType(),
@@ -31,7 +31,14 @@ const Sidebar = () => {
     <S.MainContainer onClick={() => {}}>
       <S.Container>
         <S.IconDiv className="left" side="left">
-          <div className="icon">{saveicon}</div>
+          <div
+            className="icon"
+            onClick={() => {
+              props.setOpen1(true);
+            }}
+          >
+            {saveicon}
+          </div>
         </S.IconDiv>
         <S.MessageBar>
           {!collect.isDragging ? (
@@ -45,7 +52,14 @@ const Sidebar = () => {
           )}
         </S.MessageBar>
         <S.IconDiv className="right" side="right">
-          <div className="icon">{delete_icon}</div>
+          <div
+            className="icon"
+            onClick={() => {
+              props.setOpen2(true);
+            }}
+          >
+            {delete_icon}
+          </div>
         </S.IconDiv>
       </S.Container>
     </S.MainContainer>

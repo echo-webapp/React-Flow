@@ -103,6 +103,18 @@ const MessageCard = (props) => {
 
   const UploadImage = useCallback((e) => {
     let file = e.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      let fileInfo = {
+        name: file.name,
+        type: file.type,
+        size: Math.round(file.size / 1000) + " kB",
+        base64: reader.result,
+        file: file,
+      };
+      console.log(reader.result);
+    };
     if (!file) return false;
     let pics = [];
     if (!e.target.files[0]) return false;
@@ -113,6 +125,7 @@ const MessageCard = (props) => {
       image_url: image_url,
       id: activeCardId,
     };
+    // console.log(data);
     dispatch(AddPicture(data));
   });
 
