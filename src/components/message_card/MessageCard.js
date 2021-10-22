@@ -26,7 +26,6 @@ const MessageCard = (props) => {
   const [desc, setdesc] = useState("");
   const image_element = useRef(null);
   const [image, setimage] = useState(null);
-  const [image_url, setimage_url] = useState(null);
   const dispatch = useDispatch();
   const [optionsList, setoptionsList] = useState([]);
   const [title, settitle] = useState("");
@@ -41,13 +40,6 @@ const MessageCard = (props) => {
       return null;
     });
   }, [message]);
-
-  useEffect(() => {
-    if (image?.name) {
-      const image_url = URL.createObjectURL(image);
-      setimage_url(image_url);
-    }
-  }, [image]);
 
   useEffect(() => {
     message.map((message) => {
@@ -113,20 +105,12 @@ const MessageCard = (props) => {
         base64: reader.result,
         file: file,
       };
-      console.log(reader.result);
+      const data = {
+        binary: reader.result,
+        id: activeCardId,
+      };
+      dispatch(AddPicture(data));
     };
-    if (!file) return false;
-    let pics = [];
-    if (!e.target.files[0]) return false;
-    pics.push(e.target.files[0]);
-    const image_url = URL.createObjectURL(pics[0]);
-    const data = {
-      image: pics[0],
-      image_url: image_url,
-      id: activeCardId,
-    };
-    // console.log(data);
-    dispatch(AddPicture(data));
   });
 
   return (
@@ -163,12 +147,10 @@ const MessageCard = (props) => {
         accept="image/*"
         ref={image_element}
         onChange={UploadImage}
-        disabled={image?.name ? true : false}
+        disabled={image ? true : false}
         hidden
       />
-      {image?.name ? (
-        <ShowImage id={props.id} image={image} image_url={image_url} />
-      ) : null}
+      {image ? <ShowImage id={props.id} image={image} /> : null}
       <S.MessageCardInputBody>
         <S.MessageCardInputBodyTextArea
           placeholder="Type something..."
@@ -190,7 +172,7 @@ const MessageCard = (props) => {
           id={`a`}
         />
 
-        {!image?.name && (
+        {!image && (
           <S.AddImage>
             <div
               onClick={() => {

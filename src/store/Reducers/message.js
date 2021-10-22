@@ -80,10 +80,10 @@ const messageSlice = createSlice({
     },
 
     AddPicture: (state, action) => {
-      const image = action.payload.image;
       for (let i = 0; i < state.message.length; i++) {
         if (state.message[i].id === action.payload.id) {
-          state.message[i].data.image = image;
+          console.log(action.payload.binary);
+          state.message[i].data.image = action.payload.binary;
         }
       }
     },
