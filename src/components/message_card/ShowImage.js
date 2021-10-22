@@ -37,17 +37,8 @@ const ShowImage = (props) => {
   return (
     <MessageImage>
       {props.image ? (
-        <div
-          style={{
-            backgroundImage: `url("${props.image_url}")`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            height: "120px",
-            width: "200px",
-          }}
-        >
-          <img src={props.image} />
+        <div>
+          <img style={{ height: "120px", width: "200px" }} src={props.image} />
           <MessageImageRemoveIcon
             aria-label="remove pic"
             aria-controls="removes pic"

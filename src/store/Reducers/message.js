@@ -82,7 +82,6 @@ const messageSlice = createSlice({
     AddPicture: (state, action) => {
       for (let i = 0; i < state.message.length; i++) {
         if (state.message[i].id === action.payload.id) {
-          console.log(action.payload.binary);
           state.message[i].data.image = action.payload.binary;
         }
       }
@@ -165,7 +164,6 @@ const messageSlice = createSlice({
       }
     },
     AddEdgeLabel: (state, action) => {
-      console.log(action.payload);
       let index = null;
       let all_nodes = [];
       for (let i = 0; i < state.message.length; i++) {
@@ -176,7 +174,6 @@ const messageSlice = createSlice({
       }
       all_nodes[index].label = action.payload.value;
       state.message = all_nodes;
-      console.log(state.message);
     },
   },
 });

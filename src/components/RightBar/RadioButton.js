@@ -27,7 +27,6 @@ const RadioButton = (props) => {
     if (event.target.value === "e") {
       data.tag = colorList[4];
     }
-    console.log(event.target.value);
     props.setSelectedValue(event.target.value);
     dispatch(SetColorTag(data));
   };
