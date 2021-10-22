@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const AttachQR = (props) => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  // const flowNameRedux = useSelector((store) => store.flowName.flowName);
+  const reduxData = useSelector((store) => store);
   const [flowName, setFlowName] = useState(
     useSelector((store) => store.flowName.flowName)
   );
@@ -42,10 +42,12 @@ const AttachQR = (props) => {
     dispatch(SetFlowName(e.target.value));
   };
   const saveFlow = () => {
-    const article = { title: "Axios POST Request Example" };
+    const url = `https://pikel-it.com/wapp/wh/infLOW.php?FLOW=${flowName}`;
     axios
-      .post(`https://pikel-it.com/wapp/wh/infLOW.php?FLOW=${flowName}`, article)
-      .then((response) => console.log(response))
+      .post(url, reduxData)
+      .then((response) => {
+        console.log(response);
+      })
       .catch((error) => {
         console.error("There was an error!", error);
       });

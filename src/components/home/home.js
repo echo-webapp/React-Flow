@@ -186,8 +186,8 @@ const Home = () => {
           />
           <Leftbar setOpen1={setOpen1} setOpen2={setOpen2} />
           <NodesDebugger />
-          <MiniMap />
-          <Controls />
+          {/* <MiniMap />
+          <Controls /> */}
         </S.ReactFlowContainer>
       </S.Flex>
       <Rightbar />

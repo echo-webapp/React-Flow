@@ -27,6 +27,7 @@ const RadioButton = (props) => {
     if (event.target.value === "e") {
       data.tag = colorList[4];
     }
+    console.log(event.target.value);
     props.setSelectedValue(event.target.value);
     dispatch(SetColorTag(data));
   };
@@ -43,7 +44,7 @@ const RadioButton = (props) => {
     <div>
       <Radio
         {...controlProps("a")}
-        sx={{
+        style={{
           color: "#E28383",
           "&.Mui-checked": {
             color: "#E28383",
@@ -52,7 +53,7 @@ const RadioButton = (props) => {
       />
       <Radio
         {...controlProps("b")}
-        sx={{
+        style={{
           color: "#D9D572",
           "&.Mui-checked": {
             color: "#D9D572",
@@ -61,7 +62,7 @@ const RadioButton = (props) => {
       />
       <Radio
         {...controlProps("c")}
-        sx={{
+        style={{
           color: "#8699DD",
           "&.Mui-checked": {
             color: "#8699DD",
@@ -70,7 +71,7 @@ const RadioButton = (props) => {
       />
       <Radio
         {...controlProps("d")}
-        sx={{
+        style={{
           color: "#8ACF7F",
           "&.Mui-checked": {
             color: "#8ACF7F",
@@ -79,7 +80,7 @@ const RadioButton = (props) => {
       />
       <Radio
         {...controlProps("e")}
-        sx={{
+        style={{
           color: "#C48EBE",
           "&.Mui-checked": {
             color: "#C48EBE",
