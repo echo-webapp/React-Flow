@@ -41,16 +41,25 @@ const AttachQR = (props) => {
     setFlowName(e.target.value);
     dispatch(SetFlowName(e.target.value));
   };
-  const saveFlow = () => {
+  const saveFlow = async () => {
     const url = `https://pikel-it.com/wapp/wh/infLOW.php?FLOW=${flowName}`;
-    axios
-      .post(url, reduxData)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error("There was an error!", error);
-      });
+    // axios
+    //   .post(url, reduxData)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.error("There was an error!", error);
+    //   });
+    // const response = await fetch("https://jsonplaceholder.typicode.com/users", {
+    const response = await fetch(url, {
+      method: "POST", // *Type of request GET, POST, PUT, DELETE
+      // mode: "cors", // Type of mode of the request
+      // cache: "no-cache", // options like default, no-cache, reload, force-cache
+      // credentials: "same-origin", // options like include, *same-origin, omit
+      body: JSON.stringify(reduxData),
+    });
+    console.log(response);
     props.setOpen1(false);
   };
   return (
